@@ -2,19 +2,26 @@ import {
     ButtonGroup,
     StartPageWrapper,
     StyledButton,
+    StyledCircularProgress,
+    StyledLink,
     StyledNavButton,
     StyledSubTitle,
     StyledTitle
 } from "./StartPage.styled";
 import React, {FC} from "react";
-
 import logo from './../../assets/app-logo.png';
 import {Logo} from "../../Global.styled";
 import {selectUser} from "../../redux/auth/auth.selectors";
 import {useSelector} from "react-redux";
+import {selectLoading} from "../../redux/app/app.selectors";
 
 const StartPage: FC = () => {
     const user = useSelector(selectUser);
+    const isLoading = useSelector(selectLoading)
+
+    if (isLoading) {
+        return <StyledCircularProgress size={80}/>
+    }
 
     return (
         <StartPageWrapper>
@@ -33,7 +40,7 @@ const StartPage: FC = () => {
             {
                 !!user
                     ? <StyledButton variant="contained" color="primary">
-                        Start
+                        <StyledLink to={'/main'}>Start</StyledLink>
                     </StyledButton>
                     :
                     <ButtonGroup>
@@ -45,8 +52,6 @@ const StartPage: FC = () => {
                         </StyledNavButton>
                     </ButtonGroup>
             }
-
-
         </StartPageWrapper>
     );
 }

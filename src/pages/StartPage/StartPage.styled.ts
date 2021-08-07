@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {colors} from "../../Global.styled";
-import {Button} from "@material-ui/core";
+import {Button, CircularProgress} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 interface StyleProps {
@@ -43,6 +43,17 @@ export const StyledButton = styled(Button)`
   &&:hover {
     background-color: #35bc80;
   }
+`
+
+export const StyledCircularProgress = styled(CircularProgress)`
+  && {
+    color: ${colors.primary};
+  }
+`
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${colors.primary};
 `
 
 export const StyledNavButton = styled(Link)`

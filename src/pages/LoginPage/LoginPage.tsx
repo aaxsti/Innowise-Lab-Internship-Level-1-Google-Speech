@@ -1,31 +1,20 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {LoginPageWrapper} from './LoginPage.styled';
-
 import logo from './../../assets/app-logo.png';
 import {colors, Logo} from '../../Global.styled';
 import {StyledTitle} from '../StartPage/StartPage.styled';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {useSelector} from "react-redux";
 import {selectUser} from "../../redux/auth/auth.selectors";
-import LoginForm from "../../components/forms/LoginForm";
+import AuthForm from "../../components/forms/AuthForm";
+import {Button} from "@material-ui/core";
 
-
-// Type whatever you expect in 'this.props.match.params.*'
-type PathParamsType = {}
-
-// Your component own properties
-type PropsType = RouteComponentProps<PathParamsType> & {}
-
-
-const LoginPage: FC<PropsType> = ({history}) => {
-
+const LoginPage: FC = () => {
     const user = useSelector(selectUser);
 
-    useEffect(() => {
-        if (user) {
-            history.push('/start')
-        }
-    }, [history, user])
+    if (user) {
+        return <Redirect to={'/start'}/>
+    }
 
     return (
         <LoginPageWrapper>
@@ -34,10 +23,20 @@ const LoginPage: FC<PropsType> = ({history}) => {
                 Login
             </StyledTitle>
 
-            <LoginForm/>
+            <AuthForm authType={'login'}/>
 
+            <br/>
+            <StyledTitle color={colors.dark} size={14}>
+                Don't have an account?
+            </StyledTitle>
+            <br/>
+            <Button variant="outlined">
+                <Link to={'/signup'} style={{textDecoration: 'none'}}>
+                    Sign up
+                </Link>
+            </Button>
         </LoginPageWrapper>
     )
 }
 
-export default withRouter(LoginPage);
+export default LoginPage;
