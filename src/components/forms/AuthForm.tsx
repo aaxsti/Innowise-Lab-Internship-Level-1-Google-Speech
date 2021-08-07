@@ -1,13 +1,17 @@
 import React, {FC} from 'react';
-import {authUser} from "../../redux/auth/auth.actions";
+import {loginUser, signUpUser} from "../../redux/auth/auth.actions";
 import {Form, Formik} from "formik";
 import {FormAreaWrapper, FormButtonWrapper} from "../../pages/LoginPage/LoginPage.styled";
 import MyTextField from "../FormikCustoms/FormikCustoms";
 import {Button} from "@material-ui/core";
 import {useDispatch} from "react-redux";
-import {loginValidationSchema} from "./validation/validation-schemas";
+import {loginValidationSchema, signUpValidationSchema} from "./validation/validation-schemas";
 
-const LoginForm: FC = () => {
+interface AuthFormProps {
+    authType: 'signup' | 'login'
+}
+
+const AuthForm: FC<AuthFormProps> = ({authType}) => {
     const dispatch = useDispatch();
 
     return (
@@ -17,17 +21,16 @@ const LoginForm: FC = () => {
                 email: '',
                 password: ''
             }}
-            validationSchema={loginValidationSchema}
+            validationSchema={authType === 'login' ? loginValidationSchema : signUpValidationSchema}
             onSubmit={(data, {setSubmitting}) => {
                 setSubmitting(true)
 
                 const {email, password} = data
 
-                dispatch(authUser(email, password))
+                if (authType === 'login') dispatch(loginUser(email, password))
+                else dispatch(signUpUser(email, password))
 
-                // dispatch action with login data (saga)
                 setSubmitting(false)
-
             }}
         >
             {({values, errors, isSubmitting}) => (
@@ -52,7 +55,7 @@ const LoginForm: FC = () => {
                                 variant="contained"
                                 color="primary"
                                 type="submit">
-                                Login
+                                {authType === 'login' ? 'Login' : 'Sign up'}
                             </Button>
                         </FormButtonWrapper>
                     </FormAreaWrapper>
@@ -62,4 +65,4 @@ const LoginForm: FC = () => {
     );
 }
 
-export default LoginForm;
+export default AuthForm;

@@ -21,5 +21,5 @@ export const FormButtonWrapper = styled.div`
 export const TextFieldWrapper = styled.div`
   min-height: 65px;
   min-width: 300px;
-  margin-top: 20px;
+  margin-top: 25px;
 `
