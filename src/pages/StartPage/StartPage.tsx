@@ -1,54 +1,63 @@
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import {
-    ButtonGroup,
-    StartPageWrapper,
-    StyledButton,
-    StyledNavButton,
-    StyledSubTitle,
-    StyledTitle
-} from "./StartPage.styled";
-import React, {FC} from "react";
-
-import logo from './../../assets/app-logo.png';
-import {Logo} from "../../Global.styled";
-import {selectUser} from "../../redux/auth/auth.selectors";
-import {useSelector} from "react-redux";
+  ButtonGroup,
+  StartPageWrapper,
+  StyledCircularProgress,
+  StyledLink,
+  StyledLoginButton,
+  StyledSignupButton,
+  StyledStartButton,
+  StyledSubTitle,
+  StyledTitle,
+} from './StartPage.styled';
+import logo from '../../assets/app-logo.png';
+import { Logo } from '../../Global.styled';
+import { selectUser } from '../../redux/auth/auth.selectors';
+import { selectLoading } from '../../redux/app/app.selectors';
 
 const StartPage: FC = () => {
-    const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
+  const isLoading = useSelector(selectLoading);
 
-    return (
-        <StartPageWrapper>
-            <Logo image={logo}/>
+  if (isLoading) {
+    return <StyledCircularProgress size={80} />;
+  }
 
-            <StyledTitle size={50}>
-                sPeach
-            </StyledTitle>
+  return (
+    <StartPageWrapper>
+      <Logo image={logo} />
 
-            <StyledSubTitle size={25}>
-                Click on the words to hear them sound.
-                <br/>
-                Click on the button and speak the words into the microphone.
-            </StyledSubTitle>
+      <StyledTitle size={50}>
+        sPeach
+      </StyledTitle>
 
-            {
-                !!user
-                    ? <StyledButton variant="contained" color="primary">
-                        Start
-                    </StyledButton>
-                    :
+      <StyledSubTitle size={25}>
+        Click on the words to hear them sound.
+        <br />
+        Click on the button and speak the words into the microphone.
+      </StyledSubTitle>
+
+      {
+                user
+                  ? (
+                    <StyledStartButton variant="contained" color="primary" component={StyledLink} to="/main">
+                      Start
+                    </StyledStartButton>
+                  )
+                  : (
                     <ButtonGroup>
-                        <StyledNavButton to="login" style={{marginRight: '12.5px'}}>
-                            Login
-                        </StyledNavButton>
-                        <StyledNavButton to="signup" style={{marginLeft: '12.5px'}}>
-                            Signup
-                        </StyledNavButton>
+                      <StyledLoginButton component={StyledLink} to="/login">
+                        Log in
+                      </StyledLoginButton>
+                      <StyledSignupButton component={StyledLink} to="/signup">
+                        Sign up
+                      </StyledSignupButton>
                     </ButtonGroup>
-            }
-
-
-        </StartPageWrapper>
-    );
+                  )
 }
+    </StartPageWrapper>
+  );
+};
 
 export default StartPage;

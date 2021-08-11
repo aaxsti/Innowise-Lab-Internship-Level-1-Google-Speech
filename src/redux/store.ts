@@ -1,12 +1,17 @@
-import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+import {
+  applyMiddleware, combineReducers, compose, createStore,
+} from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { authReducer } from "./auth/auth.reducer";
+import authReducer from './auth/auth.reducer';
+import appReducer from './app/app.reducer';
+import wordsReducer from './words/words.reducer';
 
 const rootReducer = combineReducers({
-    auth: authReducer
-    // main: mainReducer
-    // statistic: statisticReducer
-})
+  app: appReducer,
+  auth: authReducer,
+  words: wordsReducer,
+  // statistic: statisticReducer ???
+});
 
 export const saga = createSagaMiddleware();
 
@@ -15,6 +20,6 @@ export type AppState = ReturnType<RootReducer>
 
 const composeEnhancers = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(saga)))
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(saga)));
 
 export default store;

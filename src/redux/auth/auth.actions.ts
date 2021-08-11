@@ -1,12 +1,21 @@
-import {USER_LOGIN} from "./auth.types";
+import { USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from './auth.types';
 
-export const authUser = (email: string, password: string) => {
-    return {
-        type: USER_LOGIN,
-        payload: {
-            email,
-            password
-        }
-    }
-}
+export const loginUser = (email: string, password: string) => ({
+  type: USER_LOGIN,
+  payload: {
+    email,
+    password,
+  },
+});
 
+export const signUpUser = (email: string, password: string) => ({
+  type: USER_SIGNUP,
+  payload: {
+    email,
+    password,
+  },
+});
+
+export const logoutUser = () => ({
+  type: USER_LOGOUT,
+});
