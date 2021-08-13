@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const Global = createGlobalStyle`
   * {
@@ -12,12 +12,4 @@ export const Global = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-`;
-
-export const Logo = styled.div<{ image: string }>`
-  justify-content: flex-start;
-  width: 85px;
-  height: 85px;
-  background: url(${(props) => props.image}) center;
-  background-size: cover;
 `;

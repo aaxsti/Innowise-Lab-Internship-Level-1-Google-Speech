@@ -17,11 +17,15 @@
     },
     "plugins": [
         "react",
+        "react-hooks",
         "@typescript-eslint"
     ],
     "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "arrow-body-style": "off",
+        "spaced-comment": "off",
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": ["error"],
         "import/prefer-default-export": "off",
         "no-use-before-define": "off",
         "no-shadow": "off",

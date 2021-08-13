@@ -1,11 +1,11 @@
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import App from './components/App/App';
+import App from './App';
 import { Global } from './Global.styled';
-import store, { saga } from './redux/store';
-import authSagas from './redux/auth/auth.sagas';
-import wordsSagas from './redux/words/words.sagas';
+import store, { saga } from './core/redux/global/store';
+import authSagas from './core/redux/auth/auth.sagas';
+import wordsSagas from './core/redux/words/words.sagas';
 
 saga.run(authSagas);
 saga.run(wordsSagas);
