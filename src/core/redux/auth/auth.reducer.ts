@@ -1,13 +1,18 @@
 import { AuthActionsType, AuthActionTypes } from './auth.action-types';
+import { UserData } from '../../interfaces/user-data';
+
+interface InitialState {
+  user: UserData | null
+  errorMessage: string
+  isLoading: boolean
+}
+type ActionsType = AuthActionsType
 
 const initialState = {
-  user: null as any,
-  errorMessage: '' as string,
-  isLoading: false as boolean,
-};
-
-type InitialState = typeof initialState
-type ActionsType = AuthActionsType
+  user: null,
+  errorMessage: '',
+  isLoading: false,
+} as InitialState;
 
 const authReducer = (state = initialState, action: ActionsType): InitialState => {
   switch (action.type) {

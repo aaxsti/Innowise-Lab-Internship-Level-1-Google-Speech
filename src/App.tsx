@@ -8,7 +8,7 @@ import LoginPage from './pages/auth/LoginPage/LoginPage';
 import SignUpPage from './pages/auth/SignUpPage/SignUpPage';
 import { appInitialize } from './core/redux/app/app.actions';
 import MainPage from './pages/main/MainPage';
-import { Routes } from './core/constants/routes';
+import Routes from './core/constants/routes';
 import i18n from './core/i18next/i18next';
 
 const App: FC = () => {

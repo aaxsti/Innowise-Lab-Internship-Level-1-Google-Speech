@@ -1,4 +1,5 @@
 import { AuthData } from '../../interfaces/auth-data';
+import { UserData } from '../../interfaces/user-data';
 
 export enum AuthActionTypes {
   USER_LOGIN = 'app.auth/USER_LOGIN',
@@ -27,7 +28,7 @@ export interface UserSignupActionType {
 
 export interface LoginSuccessActionType {
   type: AuthActionTypes.LOGIN_SUCCESS;
-  payload: AuthData
+  payload: UserData
 }
 
 export interface LogoutSuccessActionType {
@@ -36,7 +37,7 @@ export interface LogoutSuccessActionType {
 
 export interface CheckAuthActionType {
   type: AuthActionTypes.CHECK_AUTH;
-  payload: AuthData
+  payload: UserData
 }
 
 export interface AuthFailedActionType {

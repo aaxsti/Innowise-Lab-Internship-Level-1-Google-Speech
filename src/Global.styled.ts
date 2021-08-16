@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const Global = createGlobalStyle`
+const Global = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -13,3 +13,5 @@ export const Global = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 `;
+
+export default Global;

@@ -16,6 +16,7 @@
   "main-page": {
     "restart-button": "Restart",
     "speak-button": "Speak",
+    "stop-button": "Stop",
     "results-button": "Results",
     "statistics-button": "Statistics"
   }

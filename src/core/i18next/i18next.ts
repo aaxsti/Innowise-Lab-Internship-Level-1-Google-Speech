@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 
 import EN_JSON from './locales/en.json';
-import { SupportedLanguages } from '../constants/lang';
+import SupportedLanguages from '../constants/lang';
 
 const initLanguage = async () => {
   await i18n.init({

@@ -7,13 +7,13 @@ import logo from '../../../assets/app-logo.png';
 import { Logo } from '../../../core/components/styled/Logo.styled';
 import { selectUser } from '../../../core/redux/auth/auth.selectors';
 import AuthForm from '../components/AuthForm';
-import { Routes } from '../../../core/constants/routes';
-import { Colors } from '../../../core/constants/colors';
-import { SubTitle } from '../../../core/components/styled/SubTitle.styled';
-import { Title } from '../../../core/components/styled/Title.styled';
-import { CustomLink } from '../../../core/components/styled/CustomLink.styled';
-import { Sizes } from '../../../core/constants/sizes';
-import { AuthPageWrapper } from '../components/styled/AuthPageWrapper.styled';
+import Routes from '../../../core/constants/routes';
+import Colors from '../../../core/constants/colors';
+import SubTitle from '../../../core/components/styled/SubTitle.styled';
+import Title from '../../../core/components/styled/Title.styled';
+import CustomLink from '../../../core/components/styled/CustomLink.styled';
+import Sizes from '../../../core/constants/sizes';
+import AuthPageWrapper from '../components/styled/AuthPageWrapper.styled';
 
 const LoginPage: FC = () => {
   const [t] = useTranslation();

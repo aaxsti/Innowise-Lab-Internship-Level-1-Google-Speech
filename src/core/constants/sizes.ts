@@ -1,4 +1,4 @@
-export enum Sizes {
+enum Sizes {
   LargePreloader = 80,
 
   StartPageTitle = 50,
@@ -7,3 +7,5 @@ export enum Sizes {
   FormTitle = 30,
   FormText = 14
 }
+
+export default Sizes;

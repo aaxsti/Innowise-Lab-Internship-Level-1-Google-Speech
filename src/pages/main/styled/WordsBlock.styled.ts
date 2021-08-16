@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const WordsBlock = styled.div`
-  padding-top: 30px;
+const WordsBlock = styled.div`
+  padding-top: 20px;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -9,3 +9,5 @@ export const WordsBlock = styled.div`
   column-gap: 15px;
   grid-template-columns: repeat(5, minmax(200px, 1fr));
 `;
+
+export default WordsBlock;
