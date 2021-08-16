@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { loginUser, signUpUser } from '../../../core/redux/auth/auth.actions';
 import MyTextField from './FormikCustom/FormikCustom';
 import { loginValidationSchema, signUpValidationSchema } from '../../../core/utils/validation-schemas';
-import { FormAreaWrapper } from './styled/FormAreaWrapper.styled';
-import { FormButtonWrapper } from './styled/FormButtonWrapper.styled';
+import FormAreaWrapper from './styled/FormAreaWrapper.styled';
+import FormButtonWrapper from './styled/FormButtonWrapper.styled';
 
 interface AuthFormProps {
     authType: 'signup' | 'login'

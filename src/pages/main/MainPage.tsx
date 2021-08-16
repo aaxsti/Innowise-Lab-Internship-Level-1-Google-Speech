@@ -1,55 +1,101 @@
 import {
-  ChangeEvent, FC, useEffect, useState,
+  ChangeEvent, FC, useCallback, useEffect, useMemo, useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Radio } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { logoutUser } from '../../core/redux/auth/auth.actions';
 import { selectUser } from '../../core/redux/auth/auth.selectors';
 import WordItem from './components/WordItem/WordItem';
-import { fetchWords } from '../../core/redux/words/words.actions';
 import WordImage from './components/WordImage/WordImage';
-import { selectWordMedia, selectWords } from '../../core/redux/words/words.selectors';
 import { Word } from '../../core/interfaces/word';
-import { Routes } from '../../core/constants/routes';
-import { MainPageWrapper } from './styled/MainPageWrapper.styled';
-import { WordsBlock } from './styled/WordsBlock.styled';
-import { MenuButton } from './styled/MenuButton.styled';
-import { SpeakButton } from './styled/SpeakButton.styled';
-import { Input } from '../../core/components/styled/Input.styled';
-import { Urls } from '../../core/constants/urls';
+import Routes from '../../core/constants/routes';
+import MainPageWrapper from './styled/MainPageWrapper.styled';
+import WordsBlock from './styled/WordsBlock.styled';
+import Urls from '../../core/constants/urls';
 import UserManage from './components/UserManage/UserManage';
-import { Preloader } from '../../core/components/styled/Preloader.styled';
-import { Colors } from '../../core/constants/colors';
-import { Sizes } from '../../core/constants/sizes';
+import Preloader from '../../core/components/styled/Preloader.styled';
+import Colors from '../../core/constants/colors';
+import Sizes from '../../core/constants/sizes';
+import MenuButtons from './components/MenuButtons/MenuButtons';
+import WordOutput from './styled/WordOutput.styled';
+import RightWordsAmount from './styled/RightWordsAmount.styled';
+import ResultsModal from './components/ResultsModal/ResultsModal';
+import {
+  selectInputWord,
+  selectRightWords,
+  selectWordItems,
+  selectWordMedia,
+} from '../../core/redux/words/words.selectors';
+import {
+  addFoundedWord, fetchWords, resetGameState, setInputWord,
+} from '../../core/redux/words/words.actions';
 
 type PathParamsType = {}
 type PropsType = RouteComponentProps<PathParamsType> & {}
 
 const MainPage: FC<PropsType> = ({ history }) => {
-  const [t] = useTranslation();
-  const [selectedValue, setSelectedValue] = useState<string>('0');
-
-  const groupNumberList = [0, 1, 2, 3, 4, 5];
-
-  const words = useSelector(selectWords);
-  const user = useSelector(selectUser);
-  const media = useSelector(selectWordMedia);
+  const [selectedWordsGroupNumber, setSelectedWordsGroupNumber] = useState<number>(0);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [spokenWord, setSpokenWord] = useState<string>('');
 
   const dispatch = useDispatch();
 
+  const groupNumberList = [0, 1, 2, 3, 4, 5];
+
+  const wordItems = useSelector(selectWordItems);
+  const user = useSelector(selectUser);
+  const media = useSelector(selectWordMedia);
+  const inputWord = useSelector(selectInputWord);
+  const rightWords = useSelector(selectRightWords);
+
+  const { transcript, interimTranscript } = useSpeechRecognition();
+
+  const words = useMemo(() => (wordItems.map((el) => (el.word))), [wordItems]);
+
+  const resetGame = () => {
+    setSpokenWord('');
+    dispatch(resetGameState());
+  };
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
+    setSelectedWordsGroupNumber(Number(event.target.value));
+    resetGame();
   };
 
   useEffect(() => {
-    dispatch(fetchWords(selectedValue));
-  }, [selectedValue, dispatch]);
+    dispatch(fetchWords(selectedWordsGroupNumber));
+  }, [selectedWordsGroupNumber, dispatch]);
 
-  const playAudio = (audioSrc: string) => {
+  const finalWord = interimTranscript.toLowerCase();
+
+  useEffect(() => {
+    if (transcript !== '') {
+      setSpokenWord('');
+      setSpokenWord(finalWord);
+      dispatch(setInputWord(finalWord));
+
+      const foundedWord = words.find((el) => (el === finalWord));
+      if (foundedWord && !rightWords.includes(foundedWord)) dispatch(addFoundedWord(foundedWord));
+    }
+  }, [rightWords, transcript, words, dispatch, finalWord]);
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const playAudio = useCallback((audioSrc: string) => {
     const audio: HTMLAudioElement = new Audio(`${Urls.Media}${audioSrc}`);
     audio?.play();
+  }, []);
+
+  const skipWord = () => {
+
   };
 
   const signOutHandler = () => {
@@ -57,44 +103,79 @@ const MainPage: FC<PropsType> = ({ history }) => {
     history.push(Routes.Start);
   };
 
-  if (words.length === 0 || !user) return <Preloader ownColor={Colors.primary} size={Sizes.LargePreloader} />;
+  const handleRecordStart = () => {
+    SpeechRecognition.startListening({ continuous: true, language: 'en-EN' });
+  };
 
-  if (!user) history.push(Routes.Start);
+  const handleRecordStop = () => {
+    SpeechRecognition.stopListening();
+  };
+
+  if (wordItems.length === 0 || !user) {
+    return <Preloader ownColor={Colors.primary} size={Sizes.LargePreloader} />;
+  }
+  if (!user) {
+    history.push(Routes.Start);
+  }
 
   return (
     <MainPageWrapper>
       <div>
-        {groupNumberList.map((num, i) => (
+        {groupNumberList.map((num) => (
           <Radio
             color="primary"
             onChange={handleChange}
-            checked={selectedValue === `${num}`}
+            checked={selectedWordsGroupNumber === num}
             value={num}
-            key={i}
+            key={num.toString()}
           />
         ))}
       </div>
+
+      <RightWordsAmount amount={rightWords.length}>
+        {rightWords.length}
+        /10
+      </RightWordsAmount>
 
       <br />
 
       <WordImage image={media.image} />
 
-      <br />
-
-      <Input disabled variant="outlined" size="small" />
+      <WordOutput>
+        {spokenWord}
+      </WordOutput>
 
       <WordsBlock>
-        {words.slice(0, 10)
-          .map((word: Word) => <WordItem word={word} key={word.id} playAudioHandler={playAudio} />)}
+        {wordItems.map((wordItem: Word) => (
+          <WordItem
+            wordItem={wordItem}
+            key={wordItem.id}
+            inputWord={inputWord}
+            playAudioHandler={playAudio}
+            skipWord={skipWord}
+          />
+        ))}
 
-        <MenuButton variant="contained" color="primary">{t('main-page.restart-button')}</MenuButton>
-        <SpeakButton variant="contained" color="primary">{t('main-page.speak-button')}</SpeakButton>
-        <MenuButton variant="contained" color="primary">{t('main-page.results-button')}</MenuButton>
-        <MenuButton variant="contained" color="primary">{t('main-page.statistics-button')}</MenuButton>
+        <MenuButtons
+          recordPlay={handleRecordStart}
+          resetGame={resetGame}
+          recordStop={handleRecordStop}
+          handleModalOpen={handleModalOpen}
+        />
 
       </WordsBlock>
 
-      <UserManage userEmail={user?.userEmail} signOut={signOutHandler} />
+      <ResultsModal
+        modalOpen={modalOpen}
+        handleModalClose={handleModalClose}
+        wordItems={wordItems}
+        rightWords={rightWords}
+      />
+
+      <UserManage
+        userEmail={user?.userEmail}
+        signOut={signOutHandler}
+      />
 
     </MainPageWrapper>
   );

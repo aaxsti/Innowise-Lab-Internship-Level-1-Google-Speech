@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const UserManageBlock = styled.div`
+const UserManageBlock = styled.div`
   padding-top: 20px;
   align-self: flex-start;
 `;
+
+export default UserManageBlock;

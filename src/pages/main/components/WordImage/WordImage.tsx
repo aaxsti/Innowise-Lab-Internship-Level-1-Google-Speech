@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import initialPicture from '../../../../assets/initial-picture.jpg';
-import { MeaningImage } from './styled/MeaningImage.styled';
-import { ImageWrapper } from './styled/ImageWrapper.styled';
-import { Urls } from '../../../../core/constants/urls';
+import MeaningImage from './styled/MeaningImage.styled';
+import ImageWrapper from './styled/ImageWrapper.styled';
+import Urls from '../../../../core/constants/urls';
 
 interface ComponentProps {
     image: string

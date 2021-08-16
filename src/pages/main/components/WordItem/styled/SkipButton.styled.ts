@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 
-export const SkipButton = styled(Button)`
+const SkipButton = styled(Button)`
   
 `;
+
+export default SkipButton;
