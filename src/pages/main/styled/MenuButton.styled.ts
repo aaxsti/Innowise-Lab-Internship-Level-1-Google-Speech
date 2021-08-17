@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
-import Colors from '../../constants/colors';
+import Colors from '../../../core/constants/colors';
 
-const MenuButton = styled(Button)<{onClick?: () => void}>`
+const MenuButton = styled(Button)`
   height: 50px;
 
   && {
-    font-size: 20px;
-    text-transform: capitalize;
     box-shadow: 0 4px 4px ${Colors.blockShadow};
     border-radius: 10px;
+    font-size: 18px;
   }
 
   &&:hover {

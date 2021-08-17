@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import Colors from '../../../../../core/constants/colors';
 
 const WordItemIcons = styled.div`
-  color: #5c5c5c;
+  color: ${Colors.wordItemSecondary};
   padding-right: 10px;
 `;
 

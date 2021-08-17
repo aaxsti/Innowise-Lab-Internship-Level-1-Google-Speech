@@ -3,8 +3,8 @@ import Colors from '../../../core/constants/colors';
 
 const MainPageWrapper = styled.div`
   min-height: 700px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 50px;
+  box-shadow: 0 4px 4px ${Colors.blockShadow};
+  padding: 40px;
   font-size: 18px;
   background-color: ${Colors.primary};
   display: flex;

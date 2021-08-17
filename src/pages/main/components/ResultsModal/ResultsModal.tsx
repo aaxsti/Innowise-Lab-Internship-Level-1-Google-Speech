@@ -30,6 +30,7 @@ const ResultsModal: FC<ComponentProps> = ({
     >
       <ModalContent>
         <ModalContentBlock>
+
           <ResultWordList>
             {wordItems.map((wordItem) => (
               <ResultWordListItem key={wordItem.id}>
@@ -43,7 +44,7 @@ const ResultsModal: FC<ComponentProps> = ({
               </ResultWordListItem>
             ))}
           </ResultWordList>
-          <br />
+
           <MenuButton onClick={handleClose}>Return</MenuButton>
         </ModalContentBlock>
       </ModalContent>

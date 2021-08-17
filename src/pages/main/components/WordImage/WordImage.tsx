@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import initialPicture from '../../../../assets/initial-picture.jpg';
 import MeaningImage from './styled/MeaningImage.styled';
 import ImageWrapper from './styled/ImageWrapper.styled';
@@ -8,7 +8,7 @@ interface ComponentProps {
     image: string
 }
 
-const WordImage: FC<ComponentProps> = ({ image }) => (
+const WordImage: FC<ComponentProps> = memo(({ image }) => (
   <ImageWrapper>
     <MeaningImage
       src={image
@@ -17,6 +17,6 @@ const WordImage: FC<ComponentProps> = ({ image }) => (
       alt="word meaning"
     />
   </ImageWrapper>
-);
+));
 
 export default WordImage;

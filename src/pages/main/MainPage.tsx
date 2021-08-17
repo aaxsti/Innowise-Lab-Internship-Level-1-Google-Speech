@@ -17,7 +17,7 @@ import Urls from '../../core/constants/urls';
 import UserManage from './components/UserManage/UserManage';
 import Preloader from '../../core/components/styled/Preloader.styled';
 import Colors from '../../core/constants/colors';
-import Sizes from '../../core/constants/sizes';
+import ElementsSizes from '../../core/constants/sizes';
 import MenuButtons from './components/MenuButtons/MenuButtons';
 import WordOutput from './styled/WordOutput.styled';
 import RightWordsAmount from './styled/RightWordsAmount.styled';
@@ -31,9 +31,12 @@ import {
 import {
   addFoundedWord, fetchWords, resetGameState, setInputWord,
 } from '../../core/redux/words/words.actions';
+import Title from '../../core/components/styled/Title.styled';
 
 type PathParamsType = {}
 type PropsType = RouteComponentProps<PathParamsType> & {}
+
+const groupNumberList = [0, 1, 2, 3, 4, 5];
 
 const MainPage: FC<PropsType> = ({ history }) => {
   const [selectedWordsGroupNumber, setSelectedWordsGroupNumber] = useState<number>(0);
@@ -41,8 +44,6 @@ const MainPage: FC<PropsType> = ({ history }) => {
   const [spokenWord, setSpokenWord] = useState<string>('');
 
   const dispatch = useDispatch();
-
-  const groupNumberList = [0, 1, 2, 3, 4, 5];
 
   const wordItems = useSelector(selectWordItems);
   const user = useSelector(selectUser);
@@ -77,9 +78,11 @@ const MainPage: FC<PropsType> = ({ history }) => {
       dispatch(setInputWord(finalWord));
 
       const foundedWord = words.find((el) => (el === finalWord));
-      if (foundedWord && !rightWords.includes(foundedWord)) dispatch(addFoundedWord(foundedWord));
+      if (foundedWord && !rightWords.includes(foundedWord)) {
+        dispatch(addFoundedWord(foundedWord));
+      }
     }
-  }, [rightWords, transcript, words, dispatch, finalWord]);
+  }, [rightWords, transcript, words, dispatch]);
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -112,7 +115,7 @@ const MainPage: FC<PropsType> = ({ history }) => {
   };
 
   if (wordItems.length === 0 || !user) {
-    return <Preloader ownColor={Colors.primary} size={Sizes.LargePreloader} />;
+    return <Preloader ownColor={Colors.primary} size={ElementsSizes.LargePreloader} />;
   }
   if (!user) {
     history.push(Routes.Start);
@@ -121,6 +124,13 @@ const MainPage: FC<PropsType> = ({ history }) => {
   return (
     <MainPageWrapper>
       <div>
+        <Title
+          color={Colors.mainText}
+          size={ElementsSizes.wordsDifficultyTitle}
+        >
+          Words difficulty
+        </Title>
+        <span>Easy</span>
         {groupNumberList.map((num) => (
           <Radio
             color="primary"
@@ -130,14 +140,13 @@ const MainPage: FC<PropsType> = ({ history }) => {
             key={num.toString()}
           />
         ))}
+        <span>Hard</span>
       </div>
 
       <RightWordsAmount amount={rightWords.length}>
         {rightWords.length}
         /10
       </RightWordsAmount>
-
-      <br />
 
       <WordImage image={media.image} />
 
@@ -162,7 +171,6 @@ const MainPage: FC<PropsType> = ({ history }) => {
           recordStop={handleRecordStop}
           handleModalOpen={handleModalOpen}
         />
-
       </WordsBlock>
 
       <ResultsModal

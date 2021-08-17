@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import logo from '../../../assets/app-logo.png';
 import { Logo } from '../../../core/components/styled/Logo.styled';
@@ -12,8 +11,9 @@ import Colors from '../../../core/constants/colors';
 import SubTitle from '../../../core/components/styled/SubTitle.styled';
 import Title from '../../../core/components/styled/Title.styled';
 import CustomLink from '../../../core/components/styled/CustomLink.styled';
-import Sizes from '../../../core/constants/sizes';
+import ElementsSizes from '../../../core/constants/sizes';
 import AuthPageWrapper from '../components/styled/AuthPageWrapper.styled';
+import ToggleAuthButton from '../components/styled/ToggleAuthButton';
 
 const LoginPage: FC = () => {
   const [t] = useTranslation();
@@ -26,20 +26,19 @@ const LoginPage: FC = () => {
   return (
     <AuthPageWrapper>
       <Logo image={logo} />
-      <Title ownColor={Colors.dark} size={Sizes.FormTitle}>
+      <Title ownColor={Colors.mainText} size={ElementsSizes.FormTitle}>
         {t('login-title-button-link')}
       </Title>
 
       <AuthForm authType="login" />
 
-      <br />
-      <SubTitle ownColor={Colors.dark} size={Sizes.FormText}>
+      <SubTitle ownColor={Colors.mainText} size={ElementsSizes.FormText}>
         {t('auth-pages.login-additional-text')}
       </SubTitle>
-      <br />
-      <Button variant="outlined" to={Routes.SignUp} component={CustomLink}>
+
+      <ToggleAuthButton variant="outlined" to={Routes.SignUp} component={CustomLink}>
         {t('signup-title-button-link')}
-      </Button>
+      </ToggleAuthButton>
     </AuthPageWrapper>
   );
 };

@@ -14,7 +14,7 @@ const MenuButtons: FC<ComponentProps> = ({
   recordPlay, recordStop, handleModalOpen, resetGame,
 }) => {
   const [t] = useTranslation();
-  const [isRecording, setIsRecording] = useState<string>('no');
+  const [isRecording, setIsRecording] = useState<'yes' | 'no'>('no');
 
   const handleOpen = () => {
     handleModalOpen();
