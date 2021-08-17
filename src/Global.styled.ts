@@ -1,11 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
+import Fonts from './core/constants/fonts';
 
-export const Global = createGlobalStyle`
+const Global = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: content-box;
-    font-family: 'Nunito', sans-serif;
+    font-family: ${Fonts.mainFont}, sans-serif;
   }
 
   body {
@@ -13,3 +14,5 @@ export const Global = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 `;
+
+export default Global;

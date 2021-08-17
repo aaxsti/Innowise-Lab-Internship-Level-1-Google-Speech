@@ -19,9 +19,10 @@ type RootReducer = typeof rootReducer;
 export type AppState = ReturnType<RootReducer>
 
 export type SagaWithoutAction = Generator<StrictEffect, void>
-export type SagaWithAction<T> = Generator<StrictEffect, void, T>
+export type SagaWithAction<A> = Generator<StrictEffect, void, A>
 
-const composeEnhancers = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const composeEnhancers = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+  || compose;
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(saga)));
 

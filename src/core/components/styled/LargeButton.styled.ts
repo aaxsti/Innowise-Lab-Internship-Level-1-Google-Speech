@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
-import { Colors } from '../../constants/colors';
+import Colors from '../../constants/colors';
 import { CustomButtonProps } from '../types/CustomButtonProps';
 
-export const LargeButton = styled(Button)<CustomButtonProps>`
+const LargeButton = styled(Button)<CustomButtonProps>`
   && {
     transition: 0.3s ease-in-out;
-    background-color: transparent;
+    background-color: ${Colors.transparent};
     border: 2px ${Colors.primary} solid;
     font-size: 20px;
     border-radius: 30px;
@@ -17,6 +17,8 @@ export const LargeButton = styled(Button)<CustomButtonProps>`
 
   &&:hover {
     background-color: ${Colors.primary};
-    color: ${Colors.dark};
+    color: ${Colors.mainText};
   }
 `;
+
+export default LargeButton;

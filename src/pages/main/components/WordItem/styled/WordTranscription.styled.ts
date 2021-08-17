@@ -1,5 +1,8 @@
 import styled from 'styled-components';
+import Colors from '../../../../../core/constants/colors';
 
-export const WordTranscription = styled.div`
-  color: #5c5c5c;
+const WordTranscription = styled.div`
+  color: ${Colors.wordItemSecondary};
 `;
+
+export default WordTranscription;

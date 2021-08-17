@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { loginUser, signUpUser } from '../../../core/redux/auth/auth.actions';
 import MyTextField from './FormikCustom/FormikCustom';
 import { loginValidationSchema, signUpValidationSchema } from '../../../core/utils/validation-schemas';
-import { FormAreaWrapper } from './styled/FormAreaWrapper.styled';
-import { FormButtonWrapper } from './styled/FormButtonWrapper.styled';
+import FormAreaWrapper from './styled/FormAreaWrapper.styled';
+import FormButtonWrapper from './styled/FormButtonWrapper.styled';
 
 interface AuthFormProps {
     authType: 'signup' | 'login'
@@ -37,8 +37,11 @@ const AuthForm: FC<AuthFormProps> = ({ authType }) => {
 
         const { email, password } = data;
 
-        if (isLogin) dispatch(loginUser(email, password));
-        else dispatch(signUpUser(email, password));
+        if (isLogin) {
+          dispatch(loginUser(email, password));
+        } else {
+          dispatch(signUpUser(email, password));
+        }
 
         setSubmitting(false);
       }}
@@ -66,7 +69,7 @@ const AuthForm: FC<AuthFormProps> = ({ authType }) => {
                 color="primary"
                 type="submit"
               >
-                {isLogin ? 'Log in' : 'Sign up'}
+                {isLogin ? t('login-title-button-link') : t('signup-title-button-link')}
               </Button>
             </FormButtonWrapper>
           </FormAreaWrapper>

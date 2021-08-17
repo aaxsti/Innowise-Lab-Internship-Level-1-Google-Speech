@@ -1,14 +1,17 @@
-export enum Colors {
+enum Colors {
   primary = '#fff',
-  dark = '#171717',
-  gray = '#8e8e8e',
+  mainText = '#171717',
 
-  blue = '#0028aa',
-  blueHover = '#002ccf',
+  wordItemSecondary = '#5c5c5c',
 
-  green = '#008d51',
-  greenHover = '#2da06d',
+  mainButton = '#008d51',
+  mainButtonHover = '#2da06d',
 
-  yellow = '#baa300',
-  yellowHover = '#e6ca00'
+  backgroundFilter = 'linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))',
+
+  transparent = 'transparent',
+
+  blockShadow = 'rgba(0, 0, 0, 0.25)'
 }
+
+export default Colors;

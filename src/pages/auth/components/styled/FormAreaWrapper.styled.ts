@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const FormAreaWrapper = styled.div`
+const FormAreaWrapper = styled.div`
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
 `;
+
+export default FormAreaWrapper;

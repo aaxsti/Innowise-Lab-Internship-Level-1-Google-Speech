@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
+import Colors from '../../../core/constants/colors';
 
-export const MenuButton = styled(Button)`
+const MenuButton = styled(Button)`
   height: 50px;
 
   && {
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px ${Colors.blockShadow};
     border-radius: 10px;
     font-size: 18px;
   }
@@ -14,3 +15,5 @@ export const MenuButton = styled(Button)`
     box-shadow: none;
   }
 `;
+
+export default MenuButton;

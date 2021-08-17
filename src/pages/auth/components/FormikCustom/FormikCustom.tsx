@@ -1,10 +1,14 @@
 import { FC } from 'react';
 import { FieldAttributes, useField } from 'formik';
-import { useSelector } from 'react-redux';
-import { TextFieldWrapper } from './TextFieldWrapper.styled';
-import { Input } from '../../../../core/components/styled/Input.styled';
+import TextFieldWrapper from './TextFieldWrapper.styled';
+import Input from '../../../../core/components/styled/Input.styled';
 
-const MyTextField: FC<FieldAttributes<{}> & { placeholder: string, ownType: string }> = ({
+interface ComponentProps {
+  placeholder: string,
+  ownType: string
+}
+
+const MyTextField: FC<FieldAttributes<{}> & ComponentProps> = ({
   placeholder,
   ownType,
   ...props

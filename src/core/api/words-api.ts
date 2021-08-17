@@ -1,8 +1,9 @@
 import axios from 'axios';
+import Urls from '../constants/urls';
 
 const wordsAPI = {
-  getWords: (selectedValue: string) => axios
-    .get(`https://afternoon-falls-25894.herokuapp.com/words?page=2&group=${selectedValue}`)
+  getWords: (selectedValue: number) => axios
+    .get(`${Urls.Words}?page=4&group=${selectedValue}`)
     .then((res) => res.data),
 };
 
