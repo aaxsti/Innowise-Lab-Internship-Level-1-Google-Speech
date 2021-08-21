@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
+import Colors from '../../constants/colors';
+import { CustomButtonProps } from '../types/CustomButtonProps';
 
-const MenuButton = styled(Button)<{onClick?: () => void}>`
+enum MenuButtonColors {
+  background = '#699df4'
+}
+
+const MenuButton = styled(Button)<{onClick?: () => void} & CustomButtonProps>`
   height: 50px;
 
   && {
+    background-color: ${MenuButtonColors.background};
     font-size: 20px;
     text-transform: capitalize;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px ${Colors.blockShadow};
     border-radius: 10px;
   }
 

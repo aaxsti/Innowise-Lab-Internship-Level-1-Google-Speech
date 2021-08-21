@@ -5,7 +5,7 @@ import { StyleProps } from '../types/StyleProps';
 
 const Preloader = styled(CircularProgress)<StyleProps>`
   && {
-    color: ${(props) => (props.ownColor ? props.ownColor : Colors.primary)};
+    color: ${(props) => (props.color ? props.color : Colors.primary)};
   }
 `;
 

@@ -2,6 +2,8 @@ import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import MenuButton from '../../../../core/components/styled/MenuButton.styled';
 import SpeakButton from '../../styled/SpeakButton.styled';
+import Routes from '../../../../core/constants/routes';
+import CustomLink from '../../../../core/components/styled/CustomLink.styled';
 
 interface ComponentProps {
   recordPlay: () => void
@@ -14,7 +16,7 @@ const MenuButtons: FC<ComponentProps> = ({
   recordPlay, recordStop, handleModalOpen, resetGame,
 }) => {
   const [t] = useTranslation();
-  const [isRecording, setIsRecording] = useState<string>('no');
+  const [isRecording, setIsRecording] = useState<'yes' | 'no'>('no');
 
   const handleOpen = () => {
     handleModalOpen();
@@ -43,6 +45,7 @@ const MenuButtons: FC<ComponentProps> = ({
       >
         {t('main-page.restart-button')}
       </MenuButton>
+
       <SpeakButton
         variant="contained"
         color="primary"
@@ -51,6 +54,7 @@ const MenuButtons: FC<ComponentProps> = ({
       >
         {isRecording === 'yes' ? t('main-page.stop-button') : t('main-page.speak-button')}
       </SpeakButton>
+
       <MenuButton
         variant="contained"
         color="primary"
@@ -58,7 +62,10 @@ const MenuButtons: FC<ComponentProps> = ({
       >
         {t('main-page.results-button')}
       </MenuButton>
-      <MenuButton variant="contained" color="primary">{t('main-page.statistics-button')}</MenuButton>
+
+      <MenuButton variant="contained" color="primary" to={Routes.Statistics} component={CustomLink}>
+        {t('main-page.statistics-button')}
+      </MenuButton>
     </>
   );
 };

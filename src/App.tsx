@@ -6,6 +6,7 @@ import MainAppWrapper from './App.styled';
 import StartPage from './pages/start/StartPage';
 import LoginPage from './pages/auth/LoginPage/LoginPage';
 import SignUpPage from './pages/auth/SignUpPage/SignUpPage';
+import StatisticsPage from './pages/statistics/StatisticsPage';
 import { appInitialize } from './core/redux/app/app.actions';
 import MainPage from './pages/main/MainPage';
 import Routes from './core/constants/routes';
@@ -21,6 +22,7 @@ const App: FC = () => {
   const redirectStartPage = () => <Redirect to={Routes.Start} />;
   const renderStartPage = () => <StartPage />;
   const renderMainPage = () => <MainPage />;
+  const renderStatisticsPage = () => <StatisticsPage />;
   const renderLoginPage = () => <LoginPage />;
   const renderSignUpPage = () => <SignUpPage />;
 
@@ -31,6 +33,7 @@ const App: FC = () => {
           <Route exact path="/" render={redirectStartPage} />
           <Route path={Routes.Start} render={renderStartPage} />
           <Route path={Routes.Main} render={renderMainPage} />
+          <Route path={Routes.Statistics} render={renderStatisticsPage} />
           <Route path={Routes.LogIn} render={renderLoginPage} />
           <Route path={Routes.SignUp} render={renderSignUpPage} />
         </Switch>

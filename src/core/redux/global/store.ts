@@ -6,11 +6,13 @@ import { StrictEffect } from 'redux-saga/effects';
 import authReducer from '../auth/auth.reducer';
 import appReducer from '../app/app.reducer';
 import wordsReducer from '../words/words.reducer';
+import statisticsReducer from '../statistics/statistics.reducer';
 
 const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   words: wordsReducer,
+  statistics: statisticsReducer,
 });
 
 export const saga = createSagaMiddleware();

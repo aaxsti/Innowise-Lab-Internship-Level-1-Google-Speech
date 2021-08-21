@@ -7,7 +7,7 @@ const WordsBlock = styled.div`
   align-items: center;
   row-gap: 15px;
   column-gap: 15px;
-  grid-template-columns: repeat(5, minmax(200px, 1fr));
+  grid-template-columns: repeat(5, minmax(230px, 1fr));
 `;
 
 export default WordsBlock;

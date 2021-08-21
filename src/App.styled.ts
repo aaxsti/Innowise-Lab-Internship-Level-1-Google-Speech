@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import background from './assets/background.jpg';
+import Colors from './core/constants/colors';
 
 const MainAppWrapper = styled.div`
   min-height: 100vh;
@@ -8,7 +9,7 @@ const MainAppWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${background}) fixed;
+  background: ${Colors.backgroundFilter}, url(${background}) fixed;
   background-size: cover;
 `;
 

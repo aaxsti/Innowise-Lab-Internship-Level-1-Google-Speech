@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { Button } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +12,8 @@ import Title from '../../../core/components/styled/Title.styled';
 import CustomLink from '../../../core/components/styled/CustomLink.styled';
 import AuthPageWrapper from '../components/styled/AuthPageWrapper.styled';
 import SubTitle from '../../../core/components/styled/SubTitle.styled';
-import Sizes from '../../../core/constants/sizes';
+import ElementsSizes from '../../../core/constants/sizes';
+import ToggleAuthButton from '../components/styled/ToggleAuthButton';
 
 const SignUpPage: FC = () => {
   const [t] = useTranslation();
@@ -26,20 +26,19 @@ const SignUpPage: FC = () => {
   return (
     <AuthPageWrapper>
       <Logo image={logo} />
-      <Title ownColor={Colors.dark} size={Sizes.FormTitle}>
+      <Title color={Colors.mainText} size={ElementsSizes.FormTitle}>
         {t('signup-title-button-link')}
       </Title>
 
       <AuthForm authType="signup" />
 
-      <br />
-      <SubTitle ownColor={Colors.dark} size={Sizes.FormText}>
+      <SubTitle color={Colors.mainText} size={ElementsSizes.FormText}>
         {t('auth-pages.signup-additional-text')}
       </SubTitle>
-      <br />
-      <Button variant="outlined" to={Routes.LogIn} component={CustomLink}>
+
+      <ToggleAuthButton variant="outlined" to={Routes.LogIn} component={CustomLink}>
         {t('login-title-button-link')}
-      </Button>
+      </ToggleAuthButton>
     </AuthPageWrapper>
   );
 };

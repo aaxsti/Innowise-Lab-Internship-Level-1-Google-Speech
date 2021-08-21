@@ -7,6 +7,8 @@ interface InitialState {
   mediaData: MediaData
   inputWord: string
   rightWords: Array<string>
+  skippedWords: Array<string>
+  gameStatus: 'passed' | 'reseted'
 }
 
 const initialState = {
@@ -17,6 +19,8 @@ const initialState = {
   },
   inputWord: '',
   rightWords: [],
+  skippedWords: [],
+  gameStatus: 'reseted',
 } as InitialState;
 
 type ActionsType = WordsActionsType
@@ -46,6 +50,16 @@ const wordsReducer = (state = initialState, action: ActionsType): InitialState =
         ...state,
         rightWords: [...state.rightWords, action.payload.foundedWord],
       };
+    case WordsActionTypes.ADD_SKIPPED_WORD:
+      return {
+        ...state,
+        skippedWords: [...state.skippedWords, action.payload.skippedWord],
+      };
+    case WordsActionTypes.REMOVE_WORD_FROM_SKIPPED:
+      return {
+        ...state,
+        skippedWords: state.skippedWords.filter((word) => word !== action.payload.removeWord),
+      };
     case WordsActionTypes.RESET_GAME_STATE:
       return {
         ...state,
@@ -55,6 +69,12 @@ const wordsReducer = (state = initialState, action: ActionsType): InitialState =
         },
         inputWord: '',
         rightWords: [],
+        skippedWords: [],
+      };
+    case WordsActionTypes.CHANGE_GAME_STATUS:
+      return {
+        ...state,
+        gameStatus: action.payload.gameStatus,
       };
     default:
       return state;

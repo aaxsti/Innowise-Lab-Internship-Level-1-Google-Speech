@@ -1,22 +1,14 @@
 enum Colors {
   primary = '#fff',
-  dark = '#171717',
-  gray = '#8e8e8e',
+  mainText = '#171717',
 
-  light = '#e5e5e5',
-  lightHover = '#f0f0f0',
+  secondaryText = '#5c5c5c',
 
-  lightGreen = '#a9ffce',
-  lightGreenHover = '#cfffe4',
+  backgroundFilter = 'linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))',
 
-  red = '#910000',
-  redHover = '#d30000',
+  transparent = 'transparent',
 
-  blue = '#0028aa',
-  blueHover = '#002ccf',
-
-  green = '#008d51',
-  greenHover = '#2da06d',
+  blockShadow = 'rgba(0, 0, 0, 0.25)'
 }
 
 export default Colors;

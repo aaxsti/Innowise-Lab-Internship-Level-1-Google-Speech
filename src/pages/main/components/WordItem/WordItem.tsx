@@ -1,39 +1,72 @@
-import { FC } from 'react';
-import VolumeUpRoundedIcon from '@material-ui/icons/VolumeUpRounded';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Word } from '../../../../core/interfaces/word';
-import { getMedia } from '../../../../core/redux/words/words.actions';
+import {
+  addSkippedWord,
+  getMedia,
+  removeWordFromSkipped,
+} from '../../../../core/redux/words/words.actions';
 import WordItemWrapper from './styled/WordItemWrapper.styled';
 import WordTranscription from './styled/WordTranscription.styled';
 import WordItemIcons from './styled/WordItemIcons.styled';
+import PlayWordButton from './styled/PlayWordButton.styled';
+import SkipWordButton from './styled/SkipWordButton.styled';
 
 interface WordItemProps {
   wordItem: Word
   playAudioHandler: (audioSrc: string) => void
   inputWord: string
-  skipWord: () => void
+  skippedWords: Array<string>
+  gameStatus: 'passed' | 'reseted'
 }
 
 const WordItem: FC<WordItemProps> = ({
-  wordItem, playAudioHandler, inputWord, skipWord,
+  wordItem, playAudioHandler, inputWord, skippedWords, gameStatus,
 }) => {
+  const [skipped, setSkipped] = useState<boolean>(false);
+  const [corrected, setCorrected] = useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const handleSelectImage = () => {
+  useEffect(() => {
+    if (gameStatus === 'reseted') {
+      setSkipped(false);
+      setCorrected(false);
+    }
+  }, [gameStatus]);
+
+  useEffect(() => {
+    if (inputWord === wordItem.word) {
+      setCorrected(true);
+    }
+  }, [wordItem.word, inputWord]);
+
+  const handleSelectWord = () => {
     dispatch(getMedia(wordItem.image, wordItem.audio));
     playAudioHandler(wordItem.audio);
   };
 
   const handleSkipWord = () => {
-    skipWord();
+    if (!skipped) {
+      setSkipped(true);
+      if (!skippedWords.includes(wordItem.word)) {
+        dispatch(addSkippedWord(wordItem.word));
+      }
+    } else {
+      dispatch(removeWordFromSkipped(wordItem.word));
+      setSkipped(false);
+    }
   };
 
   return (
-    <WordItemWrapper onClick={handleSelectImage} right={inputWord === wordItem.word}>
+    <WordItemWrapper right={corrected} skipped={skipped}>
       <WordItemIcons>
-        <VolumeUpRoundedIcon />
-        <SkipNextIcon onClick={handleSkipWord} />
+        <PlayWordButton onClick={handleSelectWord} fontSize="large" />
+        <SkipWordButton
+          onClick={handleSkipWord}
+          right={corrected.toString()}
+          status={gameStatus.toString()}
+          fontSize="large"
+        />
       </WordItemIcons>
       <div>
         <div>{wordItem.word}</div>
