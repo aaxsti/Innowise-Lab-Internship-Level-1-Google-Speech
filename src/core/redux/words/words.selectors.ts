@@ -23,6 +23,16 @@ export const selectRightWords = createSelector(
   (words) => words.rightWords,
 );
 
+export const selectSkippedWords = createSelector(
+  [words],
+  (words) => words.skippedWords,
+);
+
+export const selectGameStatus = createSelector(
+  [words],
+  (words) => words.gameStatus,
+);
+
 export const selectWordMedia = createSelector(
   [words],
   (words) => ({

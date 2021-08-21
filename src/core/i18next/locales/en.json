@@ -18,6 +18,17 @@
     "speak-button": "Speak",
     "stop-button": "Stop",
     "results-button": "Results",
-    "statistics-button": "Statistics"
+    "statistics-button": "Statistics",
+    "modal-right-title": "Right",
+    "modal-wrong-title": "Wrong",
+    "modal-close-button": "Close",
+    "no-image-text": "Word meaning",
+    "words-difficulty-title": "Words difficulty",
+    "words-difficulty-easy": "Easy",
+    "words-difficulty-hard": "Hard"
+  },
+  "statistics-page": {
+    "statistics-title": "Game Statistics",
+    "statistics-exit-button": "Exit"
   }
 }

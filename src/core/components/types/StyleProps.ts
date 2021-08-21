@@ -1,4 +1,5 @@
 export interface StyleProps {
   size?: number
-  ownColor?: string
+  color?: string
+  colored?: string
 }

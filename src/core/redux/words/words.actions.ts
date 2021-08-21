@@ -29,6 +29,27 @@ export const addFoundedWord = (foundedWord: string): WordsActionsType => ({
   },
 });
 
+export const addSkippedWord = (skippedWord: string): WordsActionsType => ({
+  type: WordsActionTypes.ADD_SKIPPED_WORD,
+  payload: {
+    skippedWord,
+  },
+});
+
+export const removeWordFromSkipped = (removeWord: string): WordsActionsType => ({
+  type: WordsActionTypes.REMOVE_WORD_FROM_SKIPPED,
+  payload: {
+    removeWord,
+  },
+});
+
 export const resetGameState = (): WordsActionsType => ({
   type: WordsActionTypes.RESET_GAME_STATE,
+});
+
+export const changeGameStatus = (gameStatus: 'passed' | 'reseted'): WordsActionsType => ({
+  type: WordsActionTypes.CHANGE_GAME_STATUS,
+  payload: {
+    gameStatus,
+  },
 });

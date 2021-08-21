@@ -7,7 +7,10 @@ export enum WordsActionTypes {
   GET_MEDIA = 'app.words/GET_MEDIA',
   SET_INPUT_WORD = 'app.words/SET_INPUT_WORD',
   ADD_FOUNDED_WORD = 'app.words/ADD_FOUNDED_WORD',
+  ADD_SKIPPED_WORD = 'app.words/ADD_SKIPPED_WORD',
+  REMOVE_WORD_FROM_SKIPPED = 'app.words/REMOVE_WORD_FROM_SKIPPED',
   RESET_GAME_STATE = 'app.words/RESET_GAME_STATE',
+  CHANGE_GAME_STATUS = 'app.words/CHANGE_GAME_STATUS',
 }
 
 export interface RequestWordsActionType {
@@ -41,8 +44,29 @@ export interface AddFoundedWordActionType {
   },
 }
 
+export interface AddSkippedWordActionType {
+  type: WordsActionTypes.ADD_SKIPPED_WORD,
+  payload: {
+    skippedWord: string
+  },
+}
+
+export interface RemoveWordFromSkippedActionType {
+  type: WordsActionTypes.REMOVE_WORD_FROM_SKIPPED,
+  payload: {
+    removeWord: string
+  },
+}
+
 export interface ResetGameStateActionType {
   type: WordsActionTypes.RESET_GAME_STATE,
+}
+
+export interface ChangeCompletedFlagActionType {
+  type: WordsActionTypes.CHANGE_GAME_STATUS,
+  payload: {
+    gameStatus: 'passed' | 'reseted'
+  },
 }
 
 export type WordsActionsType = RequestWordsActionType
@@ -50,4 +74,7 @@ export type WordsActionsType = RequestWordsActionType
   | GetMediaActionType
   | SetInputWordActionType
   | AddFoundedWordActionType
+  | AddSkippedWordActionType
+  | RemoveWordFromSkippedActionType
   | ResetGameStateActionType
+  | ChangeCompletedFlagActionType

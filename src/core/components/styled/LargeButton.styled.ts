@@ -6,7 +6,7 @@ import { CustomButtonProps } from '../types/CustomButtonProps';
 const LargeButton = styled(Button)<CustomButtonProps>`
   && {
     transition: 0.3s ease-in-out;
-    background-color: transparent;
+    background-color: ${Colors.transparent};
     border: 2px ${Colors.primary} solid;
     font-size: 20px;
     border-radius: 30px;
@@ -17,7 +17,7 @@ const LargeButton = styled(Button)<CustomButtonProps>`
 
   &&:hover {
     background-color: ${Colors.primary};
-    color: ${Colors.dark};
+    color: ${Colors.mainText};
   }
 `;
 

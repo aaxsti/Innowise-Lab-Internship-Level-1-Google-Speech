@@ -3,7 +3,7 @@ import { Modal } from '@material-ui/core';
 import Colors from '../../../../../core/constants/colors';
 
 export const ModalContent = styled.div`
-  width: 400px;
+  min-width: 600px;
 `;
 
 export const ModalContentBlock = styled.div`

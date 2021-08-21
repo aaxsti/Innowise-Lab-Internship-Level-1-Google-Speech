@@ -1,16 +1,19 @@
 import styled from 'styled-components';
 import MenuButton from '../../../core/components/styled/MenuButton.styled';
-import Colors from '../../../core/constants/colors';
+
+enum SpeakButtonColors {
+  record = '#e33232',
+  recordHover = '#ee7676'
+}
 
 const SpeakButton = styled(MenuButton)<{onClick?: () => void, recording: string}>`
   && {
-    font-size: 20px;
-    text-transform: capitalize;
-    background-color: ${(props) => (props.recording === 'yes' ? Colors.red : Colors.green)};
+    background-color: ${(props) => (props.recording === 'yes' && SpeakButtonColors.record)};
   }
 
+
   &&:hover {
-    background-color: ${(props) => (props.recording === 'yes' ? Colors.redHover : Colors.greenHover)};
+    background-color: ${(props) => (props.recording === 'yes' && SpeakButtonColors.recordHover)};
   }
   
   grid-column: span 2;
