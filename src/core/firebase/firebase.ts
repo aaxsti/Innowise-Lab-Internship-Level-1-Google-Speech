@@ -14,4 +14,5 @@ firebase.initializeApp({
 const db = firebase.firestore();
 const auth = firebase.auth();
 
+export type MyTimestamp = firebase.firestore.Timestamp
 export { db, auth };

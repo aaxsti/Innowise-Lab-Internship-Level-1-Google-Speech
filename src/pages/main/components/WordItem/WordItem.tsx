@@ -17,7 +17,7 @@ interface WordItemProps {
   playAudioHandler: (audioSrc: string) => void
   inputWord: string
   skippedWords: Array<string>
-  gameStatus: 'passed' | 'reseted'
+  gameStatus: 'passed' | 'reseted' | 'resetedOnGame'
 }
 
 const WordItem: FC<WordItemProps> = ({
@@ -28,7 +28,7 @@ const WordItem: FC<WordItemProps> = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (gameStatus === 'reseted') {
+    if (gameStatus === 'reseted' || gameStatus === 'resetedOnGame') {
       setSkipped(false);
       setCorrected(false);
     }

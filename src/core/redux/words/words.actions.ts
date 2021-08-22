@@ -47,7 +47,7 @@ export const resetGameState = (): WordsActionsType => ({
   type: WordsActionTypes.RESET_GAME_STATE,
 });
 
-export const changeGameStatus = (gameStatus: 'passed' | 'reseted'): WordsActionsType => ({
+export const changeGameStatus = (gameStatus: 'passed' | 'reseted' | 'resetedOnGame'): WordsActionsType => ({
   type: WordsActionTypes.CHANGE_GAME_STATUS,
   payload: {
     gameStatus,

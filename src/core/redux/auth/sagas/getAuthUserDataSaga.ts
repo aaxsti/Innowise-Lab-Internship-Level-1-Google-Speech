@@ -3,7 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import { SagaWithAction } from '../../global/store';
 import { hideLoader, showLoader } from '../../app/app.actions';
 import { AuthActionTypes } from '../auth.action-types';
-import onAuthStateChanged from '../../../utils/auth-saga-helper';
+import onAuthStateChanged from '../../../utils/check-auth-helper';
 
 function* getAuthUserDataSagaWorker(): SagaWithAction<firebase.User> {
   try {

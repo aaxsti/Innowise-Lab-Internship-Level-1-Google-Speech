@@ -1,4 +1,5 @@
 import { call, put } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import { SagaWithoutAction } from '../../global/store';
 import statisticsAPI from '../../../api/statistics-api';
 import { StatisticsActionTypes } from '../statistics.action-types';
@@ -8,7 +9,7 @@ function* getStatisticsSagaWorker(): SagaWithoutAction {
     const payload = yield call({ context: statisticsAPI, fn: statisticsAPI.getStatistics });
     yield put({ type: StatisticsActionTypes.FETCH_STATISTICS, payload });
   } catch (e) {
-    console.log(e);
+    toast.info(e.message);
   }
 }
 

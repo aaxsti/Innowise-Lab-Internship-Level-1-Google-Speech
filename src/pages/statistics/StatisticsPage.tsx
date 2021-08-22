@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import StatisticsPageWrapper from './styled/StatisticsPageWrapper.styled';
@@ -12,6 +12,8 @@ import StatisticsTitle from './styled/StatisticsTitle.styled';
 import Routes from '../../core/constants/routes';
 import CustomLink from '../../core/components/styled/CustomLink.styled';
 import ExitStatisticsButton from './styled/ExitStatisticsButton.styled';
+import { GameStatistics } from '../../core/interfaces/game-statistics';
+import { MyTimestamp } from '../../core/firebase/firebase';
 
 const columns = [
   {
@@ -52,7 +54,7 @@ const columns = [
   },
 ];
 
-const StatisticsPage = () => {
+const StatisticsPage: FC = () => {
   const [t] = useTranslation();
   const statistics = useSelector(selectStatistics);
   const dispatch = useDispatch();
@@ -61,15 +63,18 @@ const StatisticsPage = () => {
     dispatch(fetchStatistics());
   }, [dispatch]);
 
-  const countTotalScores = (level: number, correct: number) => correct * (correct * parseFloat(`0.${level === 1 ? 1 : level}`));
+  const countTotalScores = (level: number, correct: number): number => (level === 1 ? correct : correct * parseFloat(`1.${level - 1}`));
 
-  const convertedStatistics = useMemo(() => statistics.reduce((acc: any, el: any) => (
-    [...acc, {
-      ...el,
-      total: countTotalScores(el.level, el.correct),
-      date: el.date.toDate().toLocaleString(),
-    }]
-  ), []), [statistics]);
+  const convertedStatistics = useMemo(() => statistics
+    .reduce((acc: Array<GameStatistics>,
+      el: GameStatistics) => (
+      [...acc, {
+        ...el,
+        total: countTotalScores(el.level, el.correct),
+        date: (el.date as MyTimestamp).toDate()
+          .toLocaleString(),
+      }]
+    ), []), [statistics]);
 
   if (statistics.length === 0) {
     return <Preloader colored={Colors.primary} size={ElementsSizes.LargePreloader} />;
@@ -88,6 +93,7 @@ const StatisticsPage = () => {
         disableColumnMenu
         pageSize={10}
         rows={convertedStatistics}
+        sortingOrder={['asc', 'desc']}
       />
       <ExitStatisticsButton variant="outlined" to={Routes.Main} component={CustomLink}>
         {t('statistics-page.statistics-exit-button')}
