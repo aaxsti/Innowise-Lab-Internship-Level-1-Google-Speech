@@ -8,7 +8,6 @@ export enum AuthActionTypes {
   USER_SIGNUP = 'app.auth/USER_SIGNUP',
   AUTH_FAILED = 'app.auth/AUTH_FAILED',
   LOGOUT_SUCCESS = 'app.auth/LOGOUT_SUCCESS',
-  LOGOUT_FAILED = 'app.auth/LOGOUT_FAILED',
   CHECK_AUTH = 'app.auth/CHECK_AUTH',
 }
 

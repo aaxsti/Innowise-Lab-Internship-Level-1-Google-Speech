@@ -8,7 +8,7 @@ interface InitialState {
   inputWord: string
   rightWords: Array<string>
   skippedWords: Array<string>
-  gameStatus: 'passed' | 'reseted'
+  gameStatus: 'passed' | 'reseted' | 'resetedOnGame'
 }
 
 const initialState = {

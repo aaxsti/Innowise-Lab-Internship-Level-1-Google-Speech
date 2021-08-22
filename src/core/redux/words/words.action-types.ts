@@ -65,7 +65,7 @@ export interface ResetGameStateActionType {
 export interface ChangeCompletedFlagActionType {
   type: WordsActionTypes.CHANGE_GAME_STATUS,
   payload: {
-    gameStatus: 'passed' | 'reseted'
+    gameStatus: 'passed' | 'reseted' | 'resetedOnGame'
   },
 }
 

@@ -1,8 +1,10 @@
+import { MyTimestamp } from '../firebase/firebase';
+
 export interface GameStatistics {
-  id?: string
   login: string | undefined
   level: number
   correct: number
   incorrect: number
-  date: Date
+  total?: number
+  date: Date | MyTimestamp | string
 }

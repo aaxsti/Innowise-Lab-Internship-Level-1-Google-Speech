@@ -6,6 +6,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Radio } from '@material-ui/core';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { logoutUser } from '../../core/redux/auth/auth.actions';
 import { selectUser } from '../../core/redux/auth/auth.selectors';
 import WordItem from './components/WordItem/WordItem';
@@ -66,16 +67,18 @@ const MainPage: FC<PropsType> = ({ history }) => {
 
   const { transcript, interimTranscript } = useSpeechRecognition();
 
-  const resetGame = useCallback(() => {
+  const resetGame = useCallback((resetType: 'passed' | 'reseted' | 'resetedOnGame') => {
     setSpokenWord('');
-    dispatch(changeGameStatus('reseted'));
+    dispatch(changeGameStatus(resetType));
     dispatch(resetGameState());
   }, [dispatch]);
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSelectedWordsGroupNumber(Number(event.target.value));
-    resetGame();
+    resetGame('reseted');
   }, [resetGame]);
+
+  useEffect(() => () => { resetGame('reseted'); }, [resetGame]);
 
   const levelsRadioButtons = useMemo(() => groupNumberList.map((num) => (
     <Radio
@@ -105,7 +108,7 @@ const MainPage: FC<PropsType> = ({ history }) => {
         dispatch(removeWordFromSkipped(foundedWord));
       }
     }
-  }, [rightWords, transcript, words, dispatch]);
+  }, [finalWord, rightWords, transcript, words, dispatch]);
 
   useEffect(() => {
     if (skippedWords.length + rightWords.length === 10) {
@@ -118,6 +121,7 @@ const MainPage: FC<PropsType> = ({ history }) => {
       } as GameStatistics;
       dispatch(changeGameStatus('passed'));
       dispatch(sendStatistics(gameStats));
+      toast.info('Game passed');
     }
   }, [user?.userEmail, selectedWordsGroupNumber, skippedWords, rightWords, dispatch]);
 
@@ -142,7 +146,7 @@ const MainPage: FC<PropsType> = ({ history }) => {
 
   const signOutHandler = () => {
     dispatch(logoutUser());
-    resetGame();
+    resetGame('reseted');
     history.push(Routes.Start);
   };
 
@@ -191,6 +195,7 @@ const MainPage: FC<PropsType> = ({ history }) => {
         ))}
 
         <MenuButtons
+          gameStatus={gameStatus}
           recordPlay={handleRecordStart}
           resetGame={resetGame}
           recordStop={handleRecordStop}

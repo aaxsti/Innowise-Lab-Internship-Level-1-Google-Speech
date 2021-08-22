@@ -2,6 +2,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
+import { ToastContainer } from 'react-toastify';
 import MainAppWrapper from './App.styled';
 import StartPage from './pages/start/StartPage';
 import LoginPage from './pages/auth/LoginPage/LoginPage';
@@ -11,6 +12,7 @@ import { appInitialize } from './core/redux/app/app.actions';
 import MainPage from './pages/main/MainPage';
 import Routes from './core/constants/routes';
 import i18n from './core/i18next/i18next';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -38,6 +40,16 @@ const App: FC = () => {
           <Route path={Routes.SignUp} render={renderSignUpPage} />
         </Switch>
       </MainAppWrapper>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </I18nextProvider>
   );
 };

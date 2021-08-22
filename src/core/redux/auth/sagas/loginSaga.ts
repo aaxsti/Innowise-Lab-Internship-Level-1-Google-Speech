@@ -1,10 +1,11 @@
 import firebase from 'firebase';
 import { call, put } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import { AuthActionTypes, UserLoginActionType } from '../auth.action-types';
 import { SagaWithAction } from '../../global/store';
 import { hideLoader, showLoader } from '../../app/app.actions';
 import { auth } from '../../../firebase/firebase';
-import onAuthStateChanged from '../../../utils/auth-saga-helper';
+import onAuthStateChanged from '../../../utils/check-auth-helper';
 
 function* loginSagaWorker(action: UserLoginActionType): SagaWithAction<firebase.User> {
   try {
@@ -21,7 +22,7 @@ function* loginSagaWorker(action: UserLoginActionType): SagaWithAction<firebase.
     });
     yield put(hideLoader());
   } catch (error) {
-    yield put({ type: AuthActionTypes.AUTH_FAILED, payload: error.message });
+    toast.info(error.message);
     yield put(hideLoader());
   }
 }

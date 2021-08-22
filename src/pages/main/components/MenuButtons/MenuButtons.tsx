@@ -9,11 +9,12 @@ interface ComponentProps {
   recordPlay: () => void
   recordStop: () => void
   handleModalOpen: () => void
-  resetGame: () => void
+  resetGame: (resetType: 'passed' | 'reseted' | 'resetedOnGame') => void
+  gameStatus: 'passed' | 'reseted' | 'resetedOnGame'
 }
 
 const MenuButtons: FC<ComponentProps> = ({
-  recordPlay, recordStop, handleModalOpen, resetGame,
+  recordPlay, recordStop, handleModalOpen, resetGame, gameStatus,
 }) => {
   const [t] = useTranslation();
   const [isRecording, setIsRecording] = useState<'yes' | 'no'>('no');
@@ -33,7 +34,11 @@ const MenuButtons: FC<ComponentProps> = ({
   };
 
   const handleResetGame = () => {
-    resetGame();
+    if (gameStatus === 'passed' || gameStatus === 'resetedOnGame') {
+      resetGame('reseted');
+    } else {
+      resetGame('resetedOnGame');
+    }
   };
 
   return (
