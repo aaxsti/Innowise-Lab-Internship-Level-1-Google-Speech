@@ -1,0 +1,34 @@
+{
+  "login-title-button-link": "Log in",
+  "signup-title-button-link": "Sign up",
+  "start-page": {
+    "title": "sPeach",
+    "sub-title-first": "Click on the words to hear them sound",
+    "sub-title-second": "Click on the button and speak the words into the microphone",
+    "start-link-button": "Start"
+  },
+  "auth-pages": {
+    "email-placeholder": "Email",
+    "password-placeholder": "Password",
+    "login-additional-text": "Don't have an account?",
+    "signup-additional-text": "Already have an account?"
+  },
+  "main-page": {
+    "restart-button": "Restart",
+    "speak-button": "Speak",
+    "stop-button": "Stop",
+    "results-button": "Results",
+    "statistics-button": "Statistics",
+    "modal-right-title": "Right",
+    "modal-wrong-title": "Wrong",
+    "modal-close-button": "Close",
+    "no-image-text": "Word meaning",
+    "words-difficulty-title": "Words difficulty",
+    "words-difficulty-easy": "Easy",
+    "words-difficulty-hard": "Hard"
+  },
+  "statistics-page": {
+    "statistics-title": "Game Statistics",
+    "statistics-exit-button": "Exit"
+  }
+}

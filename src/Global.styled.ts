@@ -1,11 +1,12 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+import Fonts from './core/constants/fonts';
 
-export const Global = createGlobalStyle`
+const Global = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: content-box;
-    font-family: 'Nunito', sans-serif;
+    font-family: ${Fonts.mainFont}, sans-serif;
   }
 
   body {
@@ -14,10 +15,4 @@ export const Global = createGlobalStyle`
   }
 `;
 
-export const Logo = styled.div<{ image: string }>`
-  justify-content: flex-start;
-  width: 85px;
-  height: 85px;
-  background: url(${(props) => props.image}) center;
-  background-size: cover;
-`;
+export default Global;

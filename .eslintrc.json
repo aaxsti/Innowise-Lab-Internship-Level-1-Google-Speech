@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -17,21 +18,22 @@
     },
     "plugins": [
         "react",
+        "react-hooks",
         "@typescript-eslint"
     ],
     "rules": {
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": ["error"],
-        "import/prefer-default-export": "off",
-        "no-use-before-define": "off",
         "no-shadow": "off",
-        "react/no-array-index-key": "off",
-        "no-console": "off",
-        "react/jsx-closing-bracket-location": "off",
-        "no-trailing-spaces": "off",
+        "@typescript-eslint/no-shadow": [
+            "error",
+            {
+                "allow": ["app", "user", "words", "selectWordItems", "statistics"]
+            }
+        ],
+        "no-unused-vars": "off",
         "react/prop-types": "off",
-        "max-len": ["error", { "code": 120 }],
         "react/jsx-props-no-spreading": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
         "import/extensions": [
             "error",
             "ignorePackages",
