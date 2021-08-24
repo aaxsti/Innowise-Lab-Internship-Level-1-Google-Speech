@@ -6,7 +6,6 @@ import { selectUser } from '../../core/redux/auth/auth.selectors';
 import selectLoading from '../../core/redux/app/app.selectors';
 import Title from '../../core/components/styled/Title.styled';
 import Preloader from '../../core/components/styled/Preloader.styled';
-import StartPageWrapper from './styled/StartPageWrapper.styled';
 import ElementsSizes from '../../core/constants/sizes';
 import StartLinkButton from './styled/StartLinkButton.styled';
 import Routes from '../../core/constants/routes';
@@ -15,6 +14,7 @@ import CustomLink from '../../core/components/styled/CustomLink.styled';
 import SubTitle from '../../core/components/styled/SubTitle.styled';
 import '../../core/i18next/i18next';
 import StartPageAuthButtons from './components/StartPageAuthButtons';
+import SecondaryPagesWrapper from '../../core/components/styled/SecondaryPagesWrapper.styled';
 
 const StartPage: FC = () => {
   const [t] = useTranslation();
@@ -26,7 +26,7 @@ const StartPage: FC = () => {
   }
 
   return (
-    <StartPageWrapper>
+    <SecondaryPagesWrapper>
       <Logo image={logo} />
 
       <Title size={ElementsSizes.StartPageTitle}>
@@ -50,7 +50,7 @@ const StartPage: FC = () => {
           )
           : <StartPageAuthButtons />
       }
-    </StartPageWrapper>
+    </SecondaryPagesWrapper>
   );
 };
 

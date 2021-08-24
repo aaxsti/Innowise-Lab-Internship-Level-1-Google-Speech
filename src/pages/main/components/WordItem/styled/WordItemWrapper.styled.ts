@@ -12,11 +12,20 @@ enum WordItemColors {
 }
 
 const WordItemWrapper = styled.div<{right: boolean, skipped: boolean}>`
-  transition: 0.3s ease;
-  padding: 10px;
+  padding-left: 5px;
+  margin: 10px;
+  position: relative;
   display: flex;
-  justify-content: normal;
+  flex-direction: row;
   align-items: center;
+  cursor: pointer;
+  font-size: 19px;
+  width: 205px;
+  min-height: 70px;
+  border-radius: 10px;
+  transition: .3s;
+  box-shadow: 0 4px 4px ${Colors.blockShadow};
+  
   background-color: ${(props) => (
     // eslint-disable-next-line no-nested-ternary
     props.right ? WordItemColors.wordItemCorrectBackground
@@ -27,7 +36,6 @@ const WordItemWrapper = styled.div<{right: boolean, skipped: boolean}>`
     props.right ? WordItemColors.wordItemCorrectBackground : WordItemColors.wordItemBackground
   )};
   box-shadow: 0 4px 4px ${Colors.blockShadow};
-  border-radius: 10px;
 
   &:hover {
     box-shadow: none;

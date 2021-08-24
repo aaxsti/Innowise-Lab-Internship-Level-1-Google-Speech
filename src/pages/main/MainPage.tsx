@@ -43,6 +43,7 @@ import {
 import Title from '../../core/components/styled/Title.styled';
 import sendStatistics from '../../core/redux/statistics/statistics.actions';
 import { GameStatistics } from '../../core/interfaces/game-statistics';
+import SecondaryPagesWrapper from '../../core/components/styled/SecondaryPagesWrapper.styled';
 
 type PathParamsType = {}
 type PropsType = RouteComponentProps<PathParamsType> & {}
@@ -65,7 +66,10 @@ const MainPage: FC<PropsType> = ({ history }) => {
   const skippedWords = useSelector(selectSkippedWords);
   const gameStatus = useSelector(selectGameStatus);
 
-  const { transcript, interimTranscript } = useSpeechRecognition();
+  const {
+    transcript,
+    interimTranscript,
+  } = useSpeechRecognition();
 
   const resetGame = useCallback((resetType: 'passed' | 'reseted' | 'resetedOnGame') => {
     setSpokenWord('');
@@ -78,7 +82,9 @@ const MainPage: FC<PropsType> = ({ history }) => {
     resetGame('reseted');
   }, [resetGame]);
 
-  useEffect(() => () => { resetGame('reseted'); }, [resetGame]);
+  useEffect(() => () => {
+    resetGame('reseted');
+  }, [resetGame]);
 
   const levelsRadioButtons = useMemo(() => groupNumberList.map((num) => (
     <Radio
@@ -138,7 +144,10 @@ const MainPage: FC<PropsType> = ({ history }) => {
   }, []);
 
   const handleRecordStart = () => {
-    SpeechRecognition.startListening({ continuous: true, language: 'en-EN' });
+    SpeechRecognition.startListening({
+      continuous: true,
+      language: 'en-EN',
+    });
   };
   const handleRecordStop = () => {
     SpeechRecognition.stopListening();
@@ -158,65 +167,68 @@ const MainPage: FC<PropsType> = ({ history }) => {
   }
 
   return (
-    <MainPageWrapper>
-      <div>
-        <Title
-          color={Colors.mainText}
-          size={ElementsSizes.additionalTitle}
-        >
-          {t('main-page.words-difficulty-title')}
-        </Title>
-        <span>{t('main-page.words-difficulty-easy')}</span>
-        {levelsRadioButtons}
-        <span>{t('main-page.words-difficulty-hard')}</span>
-      </div>
+    <SecondaryPagesWrapper>
+      <MainPageWrapper>
+        <div>
+          <Title
+            color={Colors.mainText}
+            size={ElementsSizes.additionalTitle}
+          >
+            {t('main-page.words-difficulty-title')}
+          </Title>
+          <span>{t('main-page.words-difficulty-easy')}</span>
+          {levelsRadioButtons}
+          <span>{t('main-page.words-difficulty-hard')}</span>
+        </div>
 
-      <RightWordsAmount amount={rightWords.length}>
-        {rightWords.length}
-        /10
-      </RightWordsAmount>
+        <RightWordsAmount amount={rightWords.length}>
+          {rightWords.length}
+          /10
+        </RightWordsAmount>
 
-      <WordImage image={media.image} />
+        <WordImage image={media.image} />
 
-      <WordOutput>
-        {spokenWord}
-      </WordOutput>
+        <WordOutput>
+          {spokenWord}
+        </WordOutput>
 
-      <WordsBlock>
-        {wordItems.map((wordItem: Word) => (
-          <WordItem
+        <WordsBlock>
+          {wordItems.map((wordItem: Word) => (
+            <WordItem
+              gameStatus={gameStatus}
+              wordItem={wordItem}
+              skippedWords={skippedWords}
+              key={wordItem.id}
+              inputWord={inputWord}
+              playAudioHandler={playAudio}
+            />
+          ))}
+
+          <MenuButtons
             gameStatus={gameStatus}
-            wordItem={wordItem}
-            skippedWords={skippedWords}
-            key={wordItem.id}
-            inputWord={inputWord}
-            playAudioHandler={playAudio}
+            recordPlay={handleRecordStart}
+            resetGame={resetGame}
+            recordStop={handleRecordStop}
+            handleModalOpen={handleModalOpen}
           />
-        ))}
 
-        <MenuButtons
-          gameStatus={gameStatus}
-          recordPlay={handleRecordStart}
-          resetGame={resetGame}
-          recordStop={handleRecordStop}
-          handleModalOpen={handleModalOpen}
+        </WordsBlock>
+
+        <ResultsModal
+          modalOpen={modalOpen}
+          handleModalClose={handleModalClose}
+          wordItems={wordItems}
+          rightWords={rightWords}
+          playAudioHandler={playAudio}
         />
-      </WordsBlock>
 
-      <ResultsModal
-        modalOpen={modalOpen}
-        handleModalClose={handleModalClose}
-        wordItems={wordItems}
-        rightWords={rightWords}
-        playAudioHandler={playAudio}
-      />
+        <UserManage
+          userEmail={user?.userEmail}
+          signOut={signOutHandler}
+        />
 
-      <UserManage
-        userEmail={user?.userEmail}
-        signOut={signOutHandler}
-      />
-
-    </MainPageWrapper>
+      </MainPageWrapper>
+    </SecondaryPagesWrapper>
   );
 };
 
