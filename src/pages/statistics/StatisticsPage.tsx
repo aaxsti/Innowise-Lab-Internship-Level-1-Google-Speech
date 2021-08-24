@@ -86,6 +86,7 @@ const StatisticsPage: FC = () => {
         {t('statistics-page.statistics-title')}
       </StatisticsTitle>
       <StatisticsTable
+        disableExtendRowFullWidth
         headerHeight={40}
         autoHeight
         columns={columns}

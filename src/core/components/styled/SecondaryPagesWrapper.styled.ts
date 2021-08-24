@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Colors from '../../../core/constants/colors';
 import background from '../../../assets/background.jpg';
+import Colors from '../../constants/colors';
 
-const StartPageWrapper = styled.div`
+const SecondaryPagesWrapper = styled.div`
   min-height: 100vh;
   font-weight: normal;
   display: flex;
@@ -13,4 +13,4 @@ const StartPageWrapper = styled.div`
   background-size: cover;
 `;
 
-export default StartPageWrapper;
+export default SecondaryPagesWrapper;

@@ -3,7 +3,6 @@ import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
-import MainAppWrapper from './App.styled';
 import StartPage from './pages/start/StartPage';
 import LoginPage from './pages/auth/LoginPage/LoginPage';
 import SignUpPage from './pages/auth/SignUpPage/SignUpPage';
@@ -30,16 +29,14 @@ const App: FC = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <MainAppWrapper>
-        <Switch>
-          <Route exact path="/" render={redirectStartPage} />
-          <Route path={Routes.Start} render={renderStartPage} />
-          <Route path={Routes.Main} render={renderMainPage} />
-          <Route path={Routes.Statistics} render={renderStatisticsPage} />
-          <Route path={Routes.LogIn} render={renderLoginPage} />
-          <Route path={Routes.SignUp} render={renderSignUpPage} />
-        </Switch>
-      </MainAppWrapper>
+      <Switch>
+        <Route exact path="/" render={redirectStartPage} />
+        <Route path={Routes.Start} render={renderStartPage} />
+        <Route path={Routes.LogIn} render={renderLoginPage} />
+        <Route path={Routes.SignUp} render={renderSignUpPage} />
+        <Route path={Routes.Main} render={renderMainPage} />
+        <Route path={Routes.Statistics} render={renderStatisticsPage} />
+      </Switch>
       <ToastContainer
         position="top-center"
         autoClose={3000}
