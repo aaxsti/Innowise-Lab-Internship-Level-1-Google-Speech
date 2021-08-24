@@ -1,23 +1,31 @@
 import i18n from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import { initReactI18next } from 'react-i18next';
 
 import EN_JSON from './locales/en.json';
-import SupportedLanguages from '../constants/lang';
+import RU_JSON from './locales/ru.json';
 
-const initLanguage = async () => {
-  await i18n.init({
-    lng: SupportedLanguages.EN,
-    fallbackLng: SupportedLanguages.EN,
-    resources: {
-      en: {
-        translation: EN_JSON,
-      },
-    },
-    fallbackNS: ['translation'],
-    defaultNS: 'translation',
-    whitelist: [SupportedLanguages.EN],
-  });
+const localStorageLanguage = localStorage.getItem('i18nextLng');
+
+const resources = {
+  en: {
+    translation: EN_JSON,
+  },
+  ru: {
+    translation: RU_JSON,
+  },
 };
 
-initLanguage();
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: localStorageLanguage as string,
+    fallbackLng: 'en',
+    react: {
+      useSuspense: false,
+    },
+  });
 
 export default i18n;
