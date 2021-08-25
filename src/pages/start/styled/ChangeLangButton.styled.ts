@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import LargeButton from '../../../core/components/styled/LargeButton.styled';
 
-const ChangeLangButton = styled(LargeButton)<{onClick: () => void}>`
+const ChangeLangButton = styled(LargeButton)`
   && {
     height: 50px;
     width: 50px;

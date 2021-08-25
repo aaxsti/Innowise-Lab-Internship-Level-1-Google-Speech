@@ -15,4 +15,5 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 
 export type MyTimestamp = firebase.firestore.Timestamp
+export type FirebaseDocumentReference = firebase.firestore.DocumentReference;
 export { db, auth };

@@ -2,12 +2,12 @@ import { call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import { SagaWithoutAction } from '../../global/store';
 import { auth } from '../../../firebase/firebase';
-import { AuthActionTypes } from '../auth.action-types';
+import { logoutUserSuccess } from '../auth.actions';
 
 function* logoutSagaWorker(): SagaWithoutAction {
   try {
     yield call([auth, auth.signOut]);
-    yield put({ type: AuthActionTypes.LOGOUT_SUCCESS });
+    yield put(logoutUserSuccess());
   } catch (error) {
     toast.info(error.message);
   }

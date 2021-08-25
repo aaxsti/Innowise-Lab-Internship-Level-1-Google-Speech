@@ -11,13 +11,14 @@ import WordTranscription from './styled/WordTranscription.styled';
 import WordItemIcons from './styled/WordItemIcons.styled';
 import PlayWordButton from './styled/PlayWordButton.styled';
 import SkipWordButton from './styled/SkipWordButton.styled';
+import GameStatuses from '../../../../core/components/types/GameStatuses';
 
 interface WordItemProps {
   wordItem: Word
   playAudioHandler: (audioSrc: string) => void
   inputWord: string
   skippedWords: Array<string>
-  gameStatus: 'passed' | 'reseted' | 'resetedOnGame'
+  gameStatus: GameStatuses
 }
 
 const WordItem: FC<WordItemProps> = ({

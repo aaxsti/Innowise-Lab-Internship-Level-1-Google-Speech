@@ -6,7 +6,7 @@ const StatisticsPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${Colors.transparent};
+  background-color: ${Colors.noColor};
   box-shadow: ${Colors.blockShadow};
 `;
 

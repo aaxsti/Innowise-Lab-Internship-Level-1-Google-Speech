@@ -1,20 +1,24 @@
-import { db } from '../firebase/firebase';
+import { toast } from 'react-toastify';
+import { db, FirebaseDocumentReference } from '../firebase/firebase';
 import { GameStatistics } from '../interfaces/game-statistics';
 
 const statisticsAPI = {
-  getStatistics() {
+  getStatistics(): Promise<string | number | { id: string }[]> {
     return db.collection('statistics')
       .get()
       .then((snapshot) => snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })));
+      })))
+      .catch((error) => toast.info(error.message));
   },
 
-  sendStatistics(data: GameStatistics) {
+  sendStatistics(data: GameStatistics):
+    Promise<string | number | FirebaseDocumentReference> {
     return db.collection('statistics')
       .add(data)
-      .then((res) => res);
+      .then((res) => res)
+      .catch((error) => toast.info(error.message));
   },
 };
 

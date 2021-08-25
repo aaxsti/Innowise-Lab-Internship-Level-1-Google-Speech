@@ -1,4 +1,8 @@
+import { StyledComponent } from 'styled-components';
+import { ComponentType } from 'react';
+import Routes from '../../constants/routes';
+
 export interface CustomButtonProps {
-  component?: any
-  to?: string
+  component?: StyledComponent<ComponentType, {}>
+  to?: Routes
 }

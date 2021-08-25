@@ -5,7 +5,7 @@ import { StyleProps } from '../types/StyleProps';
 
 export const CustomLink = styled(Link)<StyleProps>`
   text-decoration: none;
-  color: ${(props) => (props.color ? props.color : Colors.primary)};
+  color: ${(props) => (props.color ?? Colors.primary)};
 `;
 
 export default CustomLink;

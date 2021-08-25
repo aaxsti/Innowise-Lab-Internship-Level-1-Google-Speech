@@ -6,7 +6,7 @@ import { CustomButtonProps } from '../types/CustomButtonProps';
 const LargeButton = styled(Button)<CustomButtonProps>`
   && {
     transition: 0.3s ease-in-out;
-    background-color: ${Colors.transparent};
+    background-color: ${Colors.noColor};
     border: 2px ${Colors.primary} solid;
     font-size: 20px;
     border-radius: 30px;
