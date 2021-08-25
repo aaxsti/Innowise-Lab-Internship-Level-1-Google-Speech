@@ -1,14 +1,15 @@
 import { MediaData } from '../../interfaces/media-data';
 import { Word } from '../../interfaces/word';
 import { WordsActionsType, WordsActionTypes } from './words.action-types';
+import GameStatuses from '../../components/types/GameStatuses';
 
-interface InitialState {
+export interface InitialState {
   words: Array<Word>
   mediaData: MediaData
   inputWord: string
   rightWords: Array<string>
   skippedWords: Array<string>
-  gameStatus: 'passed' | 'reseted' | 'resetedOnGame'
+  gameStatus: GameStatuses
 }
 
 const initialState = {
