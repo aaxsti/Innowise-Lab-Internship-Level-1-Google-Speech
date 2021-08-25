@@ -26,7 +26,8 @@
     "no-image-text": "Значение слова",
     "words-difficulty-title": "Сложность слов",
     "words-difficulty-easy": "Легкие",
-    "words-difficulty-hard": "Сложные"
+    "words-difficulty-hard": "Сложные",
+    "words-amount-word": "из"
   },
   "statistics-page": {
     "statistics-title": "Игровая статстика",

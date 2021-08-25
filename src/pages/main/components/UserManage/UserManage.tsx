@@ -4,7 +4,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import UserManageBlock from './styled/UserManageBlock.styled';
 
 interface ComponentProps {
-  userEmail: string
+  userEmail: string | null
   signOut: () => void
 }
 

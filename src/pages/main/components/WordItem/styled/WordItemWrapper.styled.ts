@@ -8,7 +8,7 @@ enum WordItemColors {
   wordItemCorrectBackground = '#94db9f',
   wordItemCorrectBackgroundHover = '#c0f9c9',
   wordItemSkippedBackground = '#fc9391',
-  wordItemSkippedBackgroundHover = '#ffb7b5',
+  wordItemSkippedBackgroundHover = '#feb2b0',
 }
 
 const WordItemWrapper = styled.div<{right: boolean, skipped: boolean}>`
@@ -26,25 +26,30 @@ const WordItemWrapper = styled.div<{right: boolean, skipped: boolean}>`
   transition: .3s;
   box-shadow: 0 4px 4px ${Colors.blockShadow};
   
-  background-color: ${(props) => (
-    // eslint-disable-next-line no-nested-ternary
-    props.right ? WordItemColors.wordItemCorrectBackground
-      : props.skipped ? WordItemColors.wordItemSkippedBackground
-        : WordItemColors.wordItemBackground
-  )};
+  background-color: ${(props) => {
+    if (props.right) {
+      return WordItemColors.wordItemCorrectBackground;
+    }
+    if (props.skipped) {
+      return WordItemColors.wordItemSkippedBackground;
+    }
+    return WordItemColors.wordItemBackground;
+  }};
   border: 1px solid ${(props) => (
     props.right ? WordItemColors.wordItemCorrectBackground : WordItemColors.wordItemBackground
   )};
-  box-shadow: 0 4px 4px ${Colors.blockShadow};
 
   &:hover {
     box-shadow: none;
-    background-color: ${(props) => (
-    // eslint-disable-next-line no-nested-ternary
-    props.right ? WordItemColors.wordItemCorrectBackgroundHover
-      : props.skipped ? WordItemColors.wordItemSkippedBackgroundHover
-        : WordItemColors.wordItemBackgroundHover
-  )};
+    background-color: ${(props) => {
+    if (props.right) {
+      return WordItemColors.wordItemCorrectBackgroundHover;
+    }
+    if (props.skipped) {
+      return WordItemColors.wordItemSkippedBackgroundHover;
+    }
+    return WordItemColors.wordItemBackgroundHover;
+  }};
   }
   
   &:hover ${SkipWordButton} {

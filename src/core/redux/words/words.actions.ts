@@ -1,6 +1,12 @@
 import { WordsActionsType, WordsActionTypes } from './words.action-types';
+import { Word } from '../../interfaces/word';
 
-export const fetchWords = (page: number): WordsActionsType => ({
+export const fetchWords = (payload: Array<Word>): WordsActionsType => ({
+  type: WordsActionTypes.FETCH_WORDS,
+  payload,
+});
+
+export const requestWords = (page: number): WordsActionsType => ({
   type: WordsActionTypes.REQUEST_WORDS,
   payload: {
     page,

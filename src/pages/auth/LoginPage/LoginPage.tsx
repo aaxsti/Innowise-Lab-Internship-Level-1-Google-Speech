@@ -14,7 +14,7 @@ import CustomLink from '../../../core/components/styled/CustomLink.styled';
 import ElementsSizes from '../../../core/constants/sizes';
 import AuthPageWrapper from '../components/styled/AuthPageWrapper.styled';
 import ToggleAuthButton from '../components/styled/ToggleAuthButton';
-import SecondaryPagesWrapper from '../../../core/components/styled/SecondaryPagesWrapper.styled';
+import PageWrapper from '../../../core/components/styled/PageWrapper.styled';
 
 const LoginPage: FC = () => {
   const [t] = useTranslation();
@@ -25,7 +25,7 @@ const LoginPage: FC = () => {
   }
 
   return (
-    <SecondaryPagesWrapper>
+    <PageWrapper>
       <AuthPageWrapper>
         <Logo image={logo} />
         <Title color={Colors.mainText} size={ElementsSizes.FormTitle}>
@@ -42,7 +42,7 @@ const LoginPage: FC = () => {
           {t('signup-title-button-link')}
         </ToggleAuthButton>
       </AuthPageWrapper>
-    </SecondaryPagesWrapper>
+    </PageWrapper>
   );
 };
 

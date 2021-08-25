@@ -5,20 +5,23 @@ import SpeakButton from '../../styled/SpeakButton.styled';
 import Routes from '../../../../core/constants/routes';
 import CustomLink from '../../../../core/components/styled/CustomLink.styled';
 import MenuButtonsWrapper from './styled/MenuButtonsWrapper.styled';
+import GameStatuses from '../../../../core/components/types/GameStatuses';
 
 interface ComponentProps {
   recordPlay: () => void
   recordStop: () => void
   handleModalOpen: () => void
-  resetGame: (resetType: 'passed' | 'reseted' | 'resetedOnGame') => void
-  gameStatus: 'passed' | 'reseted' | 'resetedOnGame'
+  resetGame: (resetType: GameStatuses) => void
+  gameStatus: GameStatuses
 }
+
+type RecordingStatus = 'yes' | 'no';
 
 const MenuButtons: FC<ComponentProps> = ({
   recordPlay, recordStop, handleModalOpen, resetGame, gameStatus,
 }) => {
   const [t] = useTranslation();
-  const [isRecording, setIsRecording] = useState<'yes' | 'no'>('no');
+  const [isRecording, setIsRecording] = useState<RecordingStatus>('no');
 
   const handleOpen = () => {
     handleModalOpen();

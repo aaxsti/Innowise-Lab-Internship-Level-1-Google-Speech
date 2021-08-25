@@ -5,7 +5,8 @@ import { StyleProps } from '../types/StyleProps';
 
 const Preloader = styled(CircularProgress)<StyleProps>`
   && {
-    color: ${(props) => (props.color ? props.color : Colors.primary)};
+    display: block;
+    color: ${(props) => (props.colored ?? Colors.mainText)};
   }
 `;
 

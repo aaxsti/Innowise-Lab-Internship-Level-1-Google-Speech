@@ -9,7 +9,7 @@ enum MenuButtonColors {
 
 const MenuButton = styled(Button)<{ onClick?: () => void } & CustomButtonProps>`
   height: 50px;
-  width: 205px;
+  width: 220px;
 
   && {
     margin-bottom: 20px;
