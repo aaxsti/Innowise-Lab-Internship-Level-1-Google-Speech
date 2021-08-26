@@ -14,7 +14,6 @@ import CustomLink from '../../../core/components/styled/CustomLink.styled';
 import ElementsSizes from '../../../core/constants/sizes';
 import AuthPageWrapper from '../components/styled/AuthPageWrapper.styled';
 import ToggleAuthButton from '../components/styled/ToggleAuthButton';
-import SecondaryPagesWrapper from '../../../core/components/styled/SecondaryPagesWrapper.styled';
 
 const LoginPage: FC = () => {
   const [t] = useTranslation();
@@ -25,24 +24,22 @@ const LoginPage: FC = () => {
   }
 
   return (
-    <SecondaryPagesWrapper>
-      <AuthPageWrapper>
-        <Logo image={logo} />
-        <Title color={Colors.mainText} size={ElementsSizes.FormTitle}>
-          {t('login-title-button-link')}
-        </Title>
+    <AuthPageWrapper>
+      <Logo image={logo} />
+      <Title color={Colors.mainText} size={ElementsSizes.FormTitle}>
+        {t('login-title-button-link')}
+      </Title>
 
-        <AuthForm authType="login" />
+      <AuthForm authType="login" />
 
-        <SubTitle color={Colors.mainText} size={ElementsSizes.FormText}>
-          {t('auth-pages.login-additional-text')}
-        </SubTitle>
+      <SubTitle color={Colors.mainText} size={ElementsSizes.FormText}>
+        {t('auth-pages.login-additional-text')}
+      </SubTitle>
 
-        <ToggleAuthButton variant="outlined" to={Routes.SignUp} component={CustomLink}>
-          {t('signup-title-button-link')}
-        </ToggleAuthButton>
-      </AuthPageWrapper>
-    </SecondaryPagesWrapper>
+      <ToggleAuthButton variant="outlined" to={Routes.SignUp} component={CustomLink}>
+        {t('signup-title-button-link')}
+      </ToggleAuthButton>
+    </AuthPageWrapper>
   );
 };
 

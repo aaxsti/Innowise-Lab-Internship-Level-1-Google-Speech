@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import Colors from '../../../core/constants/colors';
 
 const MainPageWrapper = styled.div`
-  flex-grow: 1;
-  padding: 10px 20px;
+  border-radius: 15px;
+  padding: 20px;
   background-color: ${Colors.primary};
   position: relative;
   display: flex;

@@ -5,7 +5,8 @@
     "title": "sPeach",
     "sub-title-first": "Click on the words to hear them sound",
     "sub-title-second": "Click on the button and speak the words into the microphone",
-    "start-link-button": "Start"
+    "start-link-button": "Start",
+    "change-lang-pic": "Change language"
   },
   "auth-pages": {
     "email-placeholder": "Email",
@@ -25,7 +26,9 @@
     "no-image-text": "Word meaning",
     "words-difficulty-title": "Words difficulty",
     "words-difficulty-easy": "Easy",
-    "words-difficulty-hard": "Hard"
+    "words-difficulty-hard": "Hard",
+    "words-amount-word": "of",
+    "words-game-passed-text": "Game passed"
   },
   "statistics-page": {
     "statistics-title": "Game Statistics",

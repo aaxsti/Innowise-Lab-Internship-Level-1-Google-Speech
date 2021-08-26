@@ -1,10 +1,10 @@
 import styled from 'styled-components';
+import background from '../../../assets/background.jpg';
+import Colors from '../../constants/colors';
 
-import background from './assets/background.jpg';
-import Colors from './core/constants/colors';
-
-const MainAppWrapper = styled.div`
+const PageWrapper = styled.div`
   min-height: 100vh;
+  font-weight: normal;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,4 +13,4 @@ const MainAppWrapper = styled.div`
   background-size: cover;
 `;
 
-export default MainAppWrapper;
+export default PageWrapper;

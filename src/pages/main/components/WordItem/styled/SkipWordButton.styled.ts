@@ -4,7 +4,7 @@ import Colors from '../../../../../core/constants/colors';
 
 const SkipWordButton = styled(SkipNextIcon)<{right: string, status: string}>`
   cursor: pointer;
-  color: ${Colors.transparent};
+  color: ${Colors.noColor};
   
   && { 
     display: ${(props) => ((props.right === 'true' || props.status === 'passed') && 'none')};

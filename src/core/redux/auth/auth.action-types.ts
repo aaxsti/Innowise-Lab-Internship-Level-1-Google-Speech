@@ -39,7 +39,7 @@ export interface CheckAuthActionType {
   payload: UserData
 }
 
-export interface AuthFailedActionType {
+export interface AuthIsFailedActionType {
   type: AuthActionTypes.AUTH_FAILED;
   payload: string
 }
@@ -49,5 +49,5 @@ export type AuthActionsType = UserLoginActionType
   | LoginSuccessActionType
   | LogoutSuccessActionType
   | CheckAuthActionType
-  | AuthFailedActionType
+  | AuthIsFailedActionType
   | UserLogoutActionType

@@ -8,12 +8,10 @@ enum MenuButtonColors {
 }
 
 const MenuButton = styled(Button)<{ onClick?: () => void } & CustomButtonProps>`
-  height: 50px;
-  width: 205px;
-
   && {
-    margin-bottom: 20px;
-    margin-right: 30px;
+    height: 50px;
+    width: 210px;
+    margin: 10px 10px 20px 10px;
     text-align: center;
     background-color: ${MenuButtonColors.background};
     font-size: 20px;
@@ -21,11 +19,7 @@ const MenuButton = styled(Button)<{ onClick?: () => void } & CustomButtonProps>`
     box-shadow: 0 4px 4px ${Colors.blockShadow};
     border-radius: 10px;
   }
-
-  &&:last-child {
-    margin-right: 0;
-  }
-
+  
   &&:hover {
     box-shadow: none;
   }

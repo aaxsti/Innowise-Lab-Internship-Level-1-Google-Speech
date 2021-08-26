@@ -9,8 +9,8 @@ function* sendStatisticsSagaWorker(action: sendStatisticsActionType)
   : SagaWithAction<GameStatistics> {
   try {
     yield call({ context: statisticsAPI, fn: statisticsAPI.sendStatistics }, action.payload);
-  } catch (e) {
-    toast.info(e.message);
+  } catch (error) {
+    toast.info(error.message);
   }
 }
 

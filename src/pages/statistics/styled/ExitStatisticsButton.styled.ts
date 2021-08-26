@@ -7,9 +7,11 @@ enum ExitStatisticsButtonColors {
 }
 
 const ExitStatisticsButton = styled(MenuButton)`
-  width: 300px;
-  
+
   && {
+    justify-self: center;
+    align-self: center;
+    margin-top: 10px;
     background-color: ${StatisticsPageColors.background};
     border: none;
   }

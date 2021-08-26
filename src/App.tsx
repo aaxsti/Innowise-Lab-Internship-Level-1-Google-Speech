@@ -12,6 +12,7 @@ import MainPage from './pages/main/MainPage';
 import Routes from './core/constants/routes';
 import i18n from './core/i18next/i18next';
 import 'react-toastify/dist/ReactToastify.css';
+import PageWrapper from './core/components/styled/PageWrapper.styled';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -29,14 +30,16 @@ const App: FC = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <Switch>
-        <Route exact path="/" render={redirectStartPage} />
-        <Route path={Routes.Start} render={renderStartPage} />
-        <Route path={Routes.LogIn} render={renderLoginPage} />
-        <Route path={Routes.SignUp} render={renderSignUpPage} />
-        <Route path={Routes.Main} render={renderMainPage} />
-        <Route path={Routes.Statistics} render={renderStatisticsPage} />
-      </Switch>
+      <PageWrapper>
+        <Switch>
+          <Route exact path="/" render={redirectStartPage} />
+          <Route path={Routes.Start} render={renderStartPage} />
+          <Route path={Routes.LogIn} render={renderLoginPage} />
+          <Route path={Routes.SignUp} render={renderSignUpPage} />
+          <Route path={Routes.Main} render={renderMainPage} />
+          <Route path={Routes.Statistics} render={renderStatisticsPage} />
+        </Switch>
+      </PageWrapper>
       <ToastContainer
         position="top-center"
         autoClose={3000}
