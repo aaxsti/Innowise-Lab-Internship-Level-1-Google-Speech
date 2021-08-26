@@ -14,7 +14,6 @@ import AuthPageWrapper from '../components/styled/AuthPageWrapper.styled';
 import SubTitle from '../../../core/components/styled/SubTitle.styled';
 import ElementsSizes from '../../../core/constants/sizes';
 import ToggleAuthButton from '../components/styled/ToggleAuthButton';
-import PageWrapper from '../../../core/components/styled/PageWrapper.styled';
 
 const SignUpPage: FC = () => {
   const [t] = useTranslation();
@@ -25,24 +24,22 @@ const SignUpPage: FC = () => {
   }
 
   return (
-    <PageWrapper>
-      <AuthPageWrapper>
-        <Logo image={logo} />
-        <Title color={Colors.mainText} size={ElementsSizes.FormTitle}>
-          {t('signup-title-button-link')}
-        </Title>
+    <AuthPageWrapper>
+      <Logo image={logo} />
+      <Title color={Colors.mainText} size={ElementsSizes.FormTitle}>
+        {t('signup-title-button-link')}
+      </Title>
 
-        <AuthForm authType="signup" />
+      <AuthForm authType="signup" />
 
-        <SubTitle color={Colors.mainText} size={ElementsSizes.FormText}>
-          {t('auth-pages.signup-additional-text')}
-        </SubTitle>
+      <SubTitle color={Colors.mainText} size={ElementsSizes.FormText}>
+        {t('auth-pages.signup-additional-text')}
+      </SubTitle>
 
-        <ToggleAuthButton variant="outlined" to={Routes.LogIn} component={CustomLink}>
-          {t('login-title-button-link')}
-        </ToggleAuthButton>
-      </AuthPageWrapper>
-    </PageWrapper>
+      <ToggleAuthButton variant="outlined" to={Routes.LogIn} component={CustomLink}>
+        {t('login-title-button-link')}
+      </ToggleAuthButton>
+    </AuthPageWrapper>
   );
 };
 

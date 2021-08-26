@@ -4,7 +4,6 @@ import MenuButton from '../../../../core/components/styled/MenuButton.styled';
 import SpeakButton from '../../styled/SpeakButton.styled';
 import Routes from '../../../../core/constants/routes';
 import CustomLink from '../../../../core/components/styled/CustomLink.styled';
-import MenuButtonsWrapper from './styled/MenuButtonsWrapper.styled';
 import GameStatuses from '../../../../core/components/types/GameStatuses';
 
 interface ComponentProps {
@@ -46,7 +45,7 @@ const MenuButtons: FC<ComponentProps> = ({
   };
 
   return (
-    <MenuButtonsWrapper>
+    <>
       <MenuButton
         variant="contained"
         color="primary"
@@ -75,7 +74,7 @@ const MenuButtons: FC<ComponentProps> = ({
       <MenuButton variant="contained" color="primary" to={Routes.Statistics} component={CustomLink}>
         {t('main-page.statistics-button')}
       </MenuButton>
-    </MenuButtonsWrapper>
+    </>
   );
 };
 

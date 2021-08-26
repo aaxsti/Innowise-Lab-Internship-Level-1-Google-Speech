@@ -16,6 +16,8 @@ import { GameStatistics } from '../../core/interfaces/game-statistics';
 import { MyTimestamp } from '../../core/firebase/firebase';
 import columns from './table-columns';
 import countTotalScores from '../../core/utils/count-total-scores';
+import StatisticsPageFlexWrapper from './styled/StatisticsPageFlexWrapper.styled';
+import StatisticsPageFlexGrowWrapper from './styled/StatisticsPageFlexGrowWrapper.styled';
 
 const StatisticsPage: FC = () => {
   const [t] = useTranslation();
@@ -43,23 +45,24 @@ const StatisticsPage: FC = () => {
 
   return (
     <StatisticsPageWrapper>
-      <StatisticsTitle color={Colors.mainText} size={ElementsSizes.StatisticsPageTitle}>
-        {t('statistics-page.statistics-title')}
-      </StatisticsTitle>
-      <StatisticsTable
-        disableExtendRowFullWidth
-        headerHeight={40}
-        autoHeight
-        columns={columns}
-        disableSelectionOnClick
-        disableColumnMenu
-        pageSize={10}
-        rows={convertedStatistics}
-        sortingOrder={['asc', 'desc']}
-      />
-      <ExitStatisticsButton variant="outlined" to={Routes.Main} component={CustomLink}>
-        {t('statistics-page.statistics-exit-button')}
-      </ExitStatisticsButton>
+      <StatisticsPageFlexWrapper>
+        <StatisticsPageFlexGrowWrapper>
+          <StatisticsTitle color={Colors.primary} size={ElementsSizes.StatisticsPageTitle}>
+            {t('statistics-page.statistics-title')}
+          </StatisticsTitle>
+          <StatisticsTable
+            columns={columns}
+            rows={convertedStatistics}
+            disableSelectionOnClick
+            disableColumnMenu
+            pageSize={10}
+            sortingOrder={['asc', 'desc']}
+          />
+          <ExitStatisticsButton variant="outlined" to={Routes.Main} component={CustomLink}>
+            {t('statistics-page.statistics-exit-button')}
+          </ExitStatisticsButton>
+        </StatisticsPageFlexGrowWrapper>
+      </StatisticsPageFlexWrapper>
     </StatisticsPageWrapper>
   );
 };

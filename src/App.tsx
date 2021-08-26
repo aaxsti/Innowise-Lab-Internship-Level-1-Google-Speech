@@ -39,17 +39,17 @@ const App: FC = () => {
           <Route path={Routes.Main} render={renderMainPage} />
           <Route path={Routes.Statistics} render={renderStatisticsPage} />
         </Switch>
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
       </PageWrapper>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </I18nextProvider>
   );
 };

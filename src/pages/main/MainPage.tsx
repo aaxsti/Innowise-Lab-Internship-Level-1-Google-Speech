@@ -34,8 +34,8 @@ import {
 import {
   addFoundedWord,
   changeGameStatus,
-  requestWords,
   removeWordFromSkipped,
+  requestWords,
   resetGameState,
   setInputWord,
 } from '../../core/redux/words/words.actions';
@@ -75,7 +75,10 @@ const MainPage: FC<PropsType> = ({ history }) => {
   const skippedWords = useSelector(selectSkippedWords);
   const gameStatus = useSelector(selectGameStatus);
 
-  const { transcript, interimTranscript } = useSpeechRecognition();
+  const {
+    transcript,
+    interimTranscript,
+  } = useSpeechRecognition();
 
   const handleRecordStart = () => {
     SpeechRecognition.startListening({
@@ -172,9 +175,7 @@ const MainPage: FC<PropsType> = ({ history }) => {
 
   if (wordItems.length === 0 || !user) {
     return (
-      <MainPageWrapper>
-        <CustomPreloader colored={Colors.mainText} size={ElementsSizes.LargePreloader} />
-      </MainPageWrapper>
+      <CustomPreloader colored={Colors.primary} size={ElementsSizes.LargePreloader} />
     );
   }
   if (!user) {

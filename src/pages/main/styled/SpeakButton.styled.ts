@@ -8,14 +8,7 @@ enum SpeakButtonColors {
 
 const SpeakButton = styled(MenuButton)<{onClick?: () => void, recording: string}>`
   && {
-    width: 220px;
-    margin-right: 20px;
-    margin-bottom: 20px;
     background-color: ${(props) => (props.recording === 'yes' && SpeakButtonColors.record)};
-  }
-
-  &&:last-child {
-    margin-right: 0;
   }
   
   &&:hover {
