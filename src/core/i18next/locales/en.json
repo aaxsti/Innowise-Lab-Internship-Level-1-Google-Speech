@@ -27,7 +27,8 @@
     "words-difficulty-title": "Words difficulty",
     "words-difficulty-easy": "Easy",
     "words-difficulty-hard": "Hard",
-    "words-amount-word": "of"
+    "words-amount-word": "of",
+    "words-game-passed-text": "Game passed"
   },
   "statistics-page": {
     "statistics-title": "Game Statistics",

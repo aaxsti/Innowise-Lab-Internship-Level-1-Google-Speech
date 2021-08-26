@@ -27,7 +27,8 @@
     "words-difficulty-title": "Сложность слов",
     "words-difficulty-easy": "Легкие",
     "words-difficulty-hard": "Сложные",
-    "words-amount-word": "из"
+    "words-amount-word": "из",
+    "words-game-passed-text": "Игра пройдена"
   },
   "statistics-page": {
     "statistics-title": "Игровая статстика",

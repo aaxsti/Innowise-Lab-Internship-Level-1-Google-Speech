@@ -77,6 +77,16 @@ const MainPage: FC<PropsType> = ({ history }) => {
 
   const { transcript, interimTranscript } = useSpeechRecognition();
 
+  const handleRecordStart = () => {
+    SpeechRecognition.startListening({
+      continuous: true,
+      language: 'en-EN',
+    });
+  };
+  const handleRecordStop = () => {
+    SpeechRecognition.stopListening();
+  };
+
   const resetGame = useCallback((resetType: GameStatuses) => {
     setSpokenWord('');
     dispatch(changeGameStatus(resetType));
@@ -91,6 +101,10 @@ const MainPage: FC<PropsType> = ({ history }) => {
   useEffect(() => () => {
     resetGame('reseted');
   }, [resetGame]);
+
+  useEffect(() => () => {
+    handleRecordStop();
+  }, []);
 
   const levelsRadioButtons = wordGroups.map((groupNumber) => (
     <Radio
@@ -122,6 +136,13 @@ const MainPage: FC<PropsType> = ({ history }) => {
     }
   }, [finalWord, rightWords, transcript, words, dispatch]);
 
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
   useEffect(() => {
     if (skippedWords.length + rightWords.length === GameStatusWordsAmount.AllPageWords) {
       const gameStats = {
@@ -133,31 +154,15 @@ const MainPage: FC<PropsType> = ({ history }) => {
       } as GameStatistics;
       dispatch(changeGameStatus('passed'));
       dispatch(sendStatistics(gameStats));
-      toast.info('Game passed');
+      handleModalOpen();
+      toast.info(t('main-page.words-game-passed-text'));
     }
-  }, [user?.userEmail, selectedWordsGroupNumber, skippedWords, rightWords, dispatch]);
-
-  const handleModalOpen = () => {
-    setModalOpen(true);
-  };
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
+  }, [t, user?.userEmail, selectedWordsGroupNumber, skippedWords, rightWords, dispatch]);
 
   const playAudio = useCallback((audioSrc: string) => {
     const audio: HTMLAudioElement = new Audio(`${Urls.Media}${audioSrc}`);
     audio?.play();
   }, []);
-
-  const handleRecordStart = () => {
-    SpeechRecognition.startListening({
-      continuous: true,
-      language: 'en-EN',
-    });
-  };
-  const handleRecordStop = () => {
-    SpeechRecognition.stopListening();
-  };
 
   const signOutHandler = () => {
     dispatch(logoutUser());
