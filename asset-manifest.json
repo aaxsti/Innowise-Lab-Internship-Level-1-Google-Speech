@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/main.a5318de4.chunk.js",
+    "main.js.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/main.a5318de4.chunk.js.map",
+    "runtime-main.js": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/runtime-main.ab7b9719.js",
+    "runtime-main.js.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/runtime-main.ab7b9719.js.map",
+    "static/css/2.68b64559.chunk.css": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/css/2.68b64559.chunk.css",
+    "static/js/2.1484786e.chunk.js": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.1484786e.chunk.js",
+    "static/js/2.1484786e.chunk.js.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.1484786e.chunk.js.map",
+    "index.html": "/Innowise-Lab-Internship-Level-1-Google-Speech/index.html",
+    "static/css/2.68b64559.chunk.css.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/css/2.68b64559.chunk.css.map",
+    "static/js/2.1484786e.chunk.js.LICENSE.txt": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.1484786e.chunk.js.LICENSE.txt",
+    "static/media/background.643d6a8f.jpg": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/media/background.643d6a8f.jpg",
+    "static/media/initial-picture.b80a764a.jpg": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/media/initial-picture.b80a764a.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ab7b9719.js",
+    "static/css/2.68b64559.chunk.css",
+    "static/js/2.1484786e.chunk.js",
+    "static/js/main.a5318de4.chunk.js"
+  ]
+}
