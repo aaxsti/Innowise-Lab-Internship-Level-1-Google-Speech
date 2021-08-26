@@ -6,7 +6,7 @@ import Global from './Global.styled';
 import store from './core/redux/global/store';
 
 const app = (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Provider store={store}>
       <Global />
       <App />
