@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.js": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/main.a37d94d0.chunk.js",
-    "main.js.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/main.a37d94d0.chunk.js.map",
+    "main.js": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/main.fa0ab5af.chunk.js",
+    "main.js.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/main.fa0ab5af.chunk.js.map",
     "runtime-main.js": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/runtime-main.ab7b9719.js",
     "runtime-main.js.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/runtime-main.ab7b9719.js.map",
     "static/css/2.68b64559.chunk.css": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/css/2.68b64559.chunk.css",
-    "static/js/2.bcda9204.chunk.js": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.bcda9204.chunk.js",
-    "static/js/2.bcda9204.chunk.js.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.bcda9204.chunk.js.map",
+    "static/js/2.4d3bd6b7.chunk.js": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.4d3bd6b7.chunk.js",
+    "static/js/2.4d3bd6b7.chunk.js.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.4d3bd6b7.chunk.js.map",
     "index.html": "/Innowise-Lab-Internship-Level-1-Google-Speech/index.html",
     "static/css/2.68b64559.chunk.css.map": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/css/2.68b64559.chunk.css.map",
-    "static/js/2.bcda9204.chunk.js.LICENSE.txt": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.bcda9204.chunk.js.LICENSE.txt",
+    "static/js/2.4d3bd6b7.chunk.js.LICENSE.txt": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/js/2.4d3bd6b7.chunk.js.LICENSE.txt",
     "static/media/background.643d6a8f.jpg": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/media/background.643d6a8f.jpg",
     "static/media/initial-picture.b80a764a.jpg": "/Innowise-Lab-Internship-Level-1-Google-Speech/static/media/initial-picture.b80a764a.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.ab7b9719.js",
     "static/css/2.68b64559.chunk.css",
-    "static/js/2.bcda9204.chunk.js",
-    "static/js/main.a37d94d0.chunk.js"
+    "static/js/2.4d3bd6b7.chunk.js",
+    "static/js/main.fa0ab5af.chunk.js"
   ]
 }
