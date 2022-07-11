@@ -8,35 +8,48 @@ enum WordItemColors {
   wordItemCorrectBackground = '#94db9f',
   wordItemCorrectBackgroundHover = '#c0f9c9',
   wordItemSkippedBackground = '#fc9391',
-  wordItemSkippedBackgroundHover = '#ffb7b5',
+  wordItemSkippedBackgroundHover = '#feb2b0',
 }
 
 const WordItemWrapper = styled.div<{right: boolean, skipped: boolean}>`
-  transition: 0.3s ease;
-  padding: 10px;
+  padding-left: 5px;
+  margin: 10px;
+  position: relative;
   display: flex;
-  justify-content: normal;
+  flex-direction: row;
   align-items: center;
-  background-color: ${(props) => (
-    // eslint-disable-next-line no-nested-ternary
-    props.right ? WordItemColors.wordItemCorrectBackground
-      : props.skipped ? WordItemColors.wordItemSkippedBackground
-        : WordItemColors.wordItemBackground
-  )};
+  cursor: pointer;
+  font-size: 19px;
+  width: 205px;
+  min-height: 70px;
+  border-radius: 10px;
+  transition: .3s;
+  box-shadow: 0 4px 4px ${Colors.blockShadow};
+  
+  background-color: ${(props) => {
+    if (props.right) {
+      return WordItemColors.wordItemCorrectBackground;
+    }
+    if (props.skipped) {
+      return WordItemColors.wordItemSkippedBackground;
+    }
+    return WordItemColors.wordItemBackground;
+  }};
   border: 1px solid ${(props) => (
     props.right ? WordItemColors.wordItemCorrectBackground : WordItemColors.wordItemBackground
   )};
-  box-shadow: 0 4px 4px ${Colors.blockShadow};
-  border-radius: 10px;
 
   &:hover {
     box-shadow: none;
-    background-color: ${(props) => (
-    // eslint-disable-next-line no-nested-ternary
-    props.right ? WordItemColors.wordItemCorrectBackgroundHover
-      : props.skipped ? WordItemColors.wordItemSkippedBackgroundHover
-        : WordItemColors.wordItemBackgroundHover
-  )};
+    background-color: ${(props) => {
+    if (props.right) {
+      return WordItemColors.wordItemCorrectBackgroundHover;
+    }
+    if (props.skipped) {
+      return WordItemColors.wordItemSkippedBackgroundHover;
+    }
+    return WordItemColors.wordItemBackgroundHover;
+  }};
   }
   
   &:hover ${SkipWordButton} {

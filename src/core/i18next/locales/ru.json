@@ -1,0 +1,37 @@
+{
+  "login-title-button-link": "Вход",
+  "signup-title-button-link": "Регистрация",
+  "start-page": {
+    "title": "sPeach",
+    "sub-title-first": "Нажимайте на слова чтобы услышать произношение",
+    "sub-title-second": "Нажимайте на кнопку 'Говорить' и говорить слова в микрофон",
+    "start-link-button": "Начать",
+    "change-lang-pic": "Изменить язык"
+  },
+  "auth-pages": {
+    "email-placeholder": "Email",
+    "password-placeholder": "Пароль",
+    "login-additional-text": "У вас нету аккаунта?",
+    "signup-additional-text": "Уже есть аккаунт?"
+  },
+  "main-page": {
+    "restart-button": "Повторить",
+    "speak-button": "Говорить",
+    "stop-button": "Стоп",
+    "results-button": "Результаты",
+    "statistics-button": "Статистика",
+    "modal-right-title": "Правильные",
+    "modal-wrong-title": "Неправильные",
+    "modal-close-button": "Закрыть",
+    "no-image-text": "Значение слова",
+    "words-difficulty-title": "Сложность слов",
+    "words-difficulty-easy": "Легкие",
+    "words-difficulty-hard": "Сложные",
+    "words-amount-word": "из",
+    "words-game-passed-text": "Игра пройдена"
+  },
+  "statistics-page": {
+    "statistics-title": "Игровая статстика",
+    "statistics-exit-button": "Выйти"
+  }
+}

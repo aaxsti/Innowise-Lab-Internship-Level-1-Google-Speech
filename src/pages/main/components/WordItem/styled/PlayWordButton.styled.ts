@@ -7,7 +7,7 @@ enum PlayWordButtonColors {
 
 const PlayWordButton = styled(VolumeUpRoundedIcon)`
   cursor: pointer;
-  
+
   &:hover {
     color: ${PlayWordButtonColors.onFocus};
   }

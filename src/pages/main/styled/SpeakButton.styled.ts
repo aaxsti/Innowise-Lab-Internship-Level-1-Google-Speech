@@ -10,13 +10,10 @@ const SpeakButton = styled(MenuButton)<{onClick?: () => void, recording: string}
   && {
     background-color: ${(props) => (props.recording === 'yes' && SpeakButtonColors.record)};
   }
-
-
+  
   &&:hover {
     background-color: ${(props) => (props.recording === 'yes' && SpeakButtonColors.recordHover)};
   }
-  
-  grid-column: span 2;
 `;
 
 export default SpeakButton;

@@ -6,7 +6,7 @@ const Title = styled.h2<StyleProps>`
   font-weight: normal;
   font-size: ${(props) => props.size}px;
   text-align: center;
-  color: ${(props) => (props.color ? props.color : Colors.primary)};
+  color: ${(props) => (props.color ?? Colors.primary)};
   padding: 5px;
 `;
 

@@ -17,7 +17,6 @@ import MainPageWrapper from './styled/MainPageWrapper.styled';
 import WordsBlock from './styled/WordsBlock.styled';
 import Urls from '../../core/constants/urls';
 import UserManage from './components/UserManage/UserManage';
-import Preloader from '../../core/components/styled/Preloader.styled';
 import Colors from '../../core/constants/colors';
 import ElementsSizes from '../../core/constants/sizes';
 import MenuButtons from './components/MenuButtons/MenuButtons';
@@ -35,19 +34,30 @@ import {
 import {
   addFoundedWord,
   changeGameStatus,
-  fetchWords,
   removeWordFromSkipped,
+  requestWords,
   resetGameState,
   setInputWord,
 } from '../../core/redux/words/words.actions';
 import Title from '../../core/components/styled/Title.styled';
 import sendStatistics from '../../core/redux/statistics/statistics.actions';
 import { GameStatistics } from '../../core/interfaces/game-statistics';
+import CustomPreloader from '../../core/components/CustomPreloader';
+import WordsGroupPages from '../../core/constants/words-group-pages';
+import GameStatuses from '../../core/components/types/GameStatuses';
+import GameStatusWordsAmount from '../../core/constants/game-status-words-amount';
 
 type PathParamsType = {}
 type PropsType = RouteComponentProps<PathParamsType> & {}
 
-const groupNumberList = [0, 1, 2, 3, 4, 5];
+const wordGroups = [
+  WordsGroupPages.FirstWordsGroup,
+  WordsGroupPages.SecondWordsGroup,
+  WordsGroupPages.ThirdWordsGroup,
+  WordsGroupPages.FourthWordsGroup,
+  WordsGroupPages.FifthWordsGroup,
+  WordsGroupPages.SixthWordsGroup,
+];
 
 const MainPage: FC<PropsType> = ({ history }) => {
   const [t] = useTranslation();
@@ -65,33 +75,52 @@ const MainPage: FC<PropsType> = ({ history }) => {
   const skippedWords = useSelector(selectSkippedWords);
   const gameStatus = useSelector(selectGameStatus);
 
-  const { transcript, interimTranscript } = useSpeechRecognition();
+  const {
+    transcript,
+    interimTranscript,
+  } = useSpeechRecognition();
 
-  const resetGame = useCallback((resetType: 'passed' | 'reseted' | 'resetedOnGame') => {
+  const handleRecordStart = () => {
+    SpeechRecognition.startListening({
+      continuous: true,
+      language: 'en-EN',
+    });
+  };
+  const handleRecordStop = () => {
+    SpeechRecognition.stopListening();
+  };
+
+  const resetGame = useCallback((resetType: GameStatuses) => {
     setSpokenWord('');
     dispatch(changeGameStatus(resetType));
     dispatch(resetGameState());
   }, [dispatch]);
 
-  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedWordsGroupNumber(Number(event.target.value));
+    resetGame('reseted');
+  };
+
+  useEffect(() => () => {
     resetGame('reseted');
   }, [resetGame]);
 
-  useEffect(() => () => { resetGame('reseted'); }, [resetGame]);
+  useEffect(() => () => {
+    handleRecordStop();
+  }, []);
 
-  const levelsRadioButtons = useMemo(() => groupNumberList.map((num) => (
+  const levelsRadioButtons = wordGroups.map((groupNumber) => (
     <Radio
       color="primary"
       onChange={handleChange}
-      checked={selectedWordsGroupNumber === num}
-      value={num}
-      key={num.toString()}
+      checked={selectedWordsGroupNumber === groupNumber}
+      value={groupNumber}
+      key={groupNumber.toString()}
     />
-  )), [handleChange, selectedWordsGroupNumber]);
+  ));
 
   useEffect(() => {
-    dispatch(fetchWords(selectedWordsGroupNumber));
+    dispatch(requestWords(selectedWordsGroupNumber));
   }, [selectedWordsGroupNumber, dispatch]);
 
   const finalWord = interimTranscript.toLowerCase();
@@ -110,8 +139,15 @@ const MainPage: FC<PropsType> = ({ history }) => {
     }
   }, [finalWord, rightWords, transcript, words, dispatch]);
 
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
   useEffect(() => {
-    if (skippedWords.length + rightWords.length === 10) {
+    if (skippedWords.length + rightWords.length === GameStatusWordsAmount.AllPageWords) {
       const gameStats = {
         login: user?.userEmail,
         level: selectedWordsGroupNumber + 1,
@@ -121,28 +157,15 @@ const MainPage: FC<PropsType> = ({ history }) => {
       } as GameStatistics;
       dispatch(changeGameStatus('passed'));
       dispatch(sendStatistics(gameStats));
-      toast.info('Game passed');
+      handleModalOpen();
+      toast.info(t('main-page.words-game-passed-text'));
     }
-  }, [user?.userEmail, selectedWordsGroupNumber, skippedWords, rightWords, dispatch]);
-
-  const handleModalOpen = () => {
-    setModalOpen(true);
-  };
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
+  }, [t, user?.userEmail, selectedWordsGroupNumber, skippedWords, rightWords, dispatch]);
 
   const playAudio = useCallback((audioSrc: string) => {
     const audio: HTMLAudioElement = new Audio(`${Urls.Media}${audioSrc}`);
     audio?.play();
   }, []);
-
-  const handleRecordStart = () => {
-    SpeechRecognition.startListening({ continuous: true, language: 'en-EN' });
-  };
-  const handleRecordStop = () => {
-    SpeechRecognition.stopListening();
-  };
 
   const signOutHandler = () => {
     dispatch(logoutUser());
@@ -151,7 +174,9 @@ const MainPage: FC<PropsType> = ({ history }) => {
   };
 
   if (wordItems.length === 0 || !user) {
-    return <Preloader colored={Colors.primary} size={ElementsSizes.LargePreloader} />;
+    return (
+      <CustomPreloader colored={Colors.primary} size={ElementsSizes.LargePreloader} />
+    );
   }
   if (!user) {
     history.push(Routes.Start);
@@ -172,8 +197,7 @@ const MainPage: FC<PropsType> = ({ history }) => {
       </div>
 
       <RightWordsAmount amount={rightWords.length}>
-        {rightWords.length}
-        /10
+        {`${rightWords.length} ${t('main-page.words-amount-word')} ${words.length}`}
       </RightWordsAmount>
 
       <WordImage image={media.image} />
@@ -201,6 +225,7 @@ const MainPage: FC<PropsType> = ({ history }) => {
           recordStop={handleRecordStop}
           handleModalOpen={handleModalOpen}
         />
+
       </WordsBlock>
 
       <ResultsModal
@@ -219,5 +244,4 @@ const MainPage: FC<PropsType> = ({ history }) => {
     </MainPageWrapper>
   );
 };
-
 export default withRouter(MainPage);

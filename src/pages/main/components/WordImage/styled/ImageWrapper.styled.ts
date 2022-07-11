@@ -4,8 +4,8 @@ const ImageWrapper = styled.div`
   background-size: cover;
   text-align: center;
   overflow: hidden;
-  width: 450px;
-  height: 285px;
+  width: 375px;
+  height: 200px;
   padding-bottom: 20px;
 `;
 
