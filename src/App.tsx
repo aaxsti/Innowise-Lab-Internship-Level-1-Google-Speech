@@ -3,6 +3,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
+import { hotjar } from 'react-hotjar';
 import StartPage from './pages/start/StartPage';
 import LoginPage from './pages/auth/LoginPage/LoginPage';
 import SignUpPage from './pages/auth/SignUpPage/SignUpPage';
@@ -13,6 +14,8 @@ import Routes from './core/constants/routes';
 import i18n from './core/i18next/i18next';
 import 'react-toastify/dist/ReactToastify.css';
 import PageWrapper from './core/components/styled/PageWrapper.styled';
+
+hotjar.initialize(3060380, 6);
 
 const App: FC = () => {
   const dispatch = useDispatch();
